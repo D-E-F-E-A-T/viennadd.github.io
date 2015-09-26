@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "lixukexingshu";
+  src: url("/font/lixukexingshu.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+}
 body {
   width: 100%;
 }
@@ -372,6 +378,7 @@ a:visited {
   text-align: center;
   height: 40px;
   position: absolute;
+  font: lixukexingshu;
   top: 50%;
   left: 0;
   margin-top: -20px;
