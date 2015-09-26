@@ -370,6 +370,7 @@ a:visited {
 }
 .header-inner #logo .site-title {
   font-size: 16px;
+  font: lixukexingshu;
   display: inline-block;
   vertical-align: top;
   font-weight: 600;
