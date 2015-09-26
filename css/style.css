@@ -655,15 +655,13 @@ a:visited {
   text-align: center;
   margin: 20px auto 10px;
   background: #38b7ea;
-  -webkit-border-radius: 20px;
-  border-radius: 20px;
   -webkit-transition: 0.2s ease;
   -moz-transition: 0.2s ease;
   -ms-transition: 0.2s ease;
   transition: 0.2s ease;
 }
 #profile .inner .base-info #follow:hover {
-  background: #49c8fb;
+  background: #e01313;
 }
 #profile .inner .article-info {
   padding: 0px;
