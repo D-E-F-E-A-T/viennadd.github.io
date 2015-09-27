@@ -329,6 +329,11 @@ a:visited {
 .widget dt {
   font-weight: bold;
 }
+.article-entry ::selection,
+.widget ::selection {
+  color: #fff;
+  background-color: #575757;
+}
 #header {
   background: #fff;
   position: relative;
