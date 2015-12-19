@@ -826,6 +826,7 @@ html ::selection {
 .article-header .article-title {
   display: block;
   margin-bottom: 14px;
+  text-transform: capitalize;
 }
 .article-title {
   text-decoration: none;
