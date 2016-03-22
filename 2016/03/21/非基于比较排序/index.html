@@ -3,17 +3,36 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2015 | 风吹雪</title>
+  <title>非基于比较的排序算法 | 风吹雪</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="各种生活,技术文章">
-<meta property="og:type" content="website">
-<meta property="og:title" content="风吹雪">
-<meta property="og:url" content="http://viennadd.github.io/archives/2015/index.html">
+  <meta name="description" content="计数排序(Counting Sort)、桶排序、基数排序三个已经有不少很好的博客文章介绍，但不自己尝试描述一遍就难以熟悉，权当记录。
+参考了 计数排序，基数排序和桶排序和 三种线性排序算法 计数排序、桶排序与基数排序
+===
+计数排序首先是主要的步骤
+
+准备线性表字典 Dict[], 其长度 m 是待排序元素的范围, 换言之每个待排序的元素都能在这个字典找到对应的位置
+扫描长度为 n 的待排序表">
+<meta property="og:type" content="article">
+<meta property="og:title" content="非基于比较的排序算法">
+<meta property="og:url" content="http://viennadd.github.io/2016/03/21/非基于比较排序/index.html">
 <meta property="og:site_name" content="风吹雪">
-<meta property="og:description" content="各种生活,技术文章">
+<meta property="og:description" content="计数排序(Counting Sort)、桶排序、基数排序三个已经有不少很好的博客文章介绍，但不自己尝试描述一遍就难以熟悉，权当记录。
+参考了 计数排序，基数排序和桶排序和 三种线性排序算法 计数排序、桶排序与基数排序
+===
+计数排序首先是主要的步骤
+
+准备线性表字典 Dict[], 其长度 m 是待排序元素的范围, 换言之每个待排序的元素都能在这个字典找到对应的位置
+扫描长度为 n 的待排序表">
+<meta property="og:updated_time" content="2016-03-22T13:22:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="风吹雪">
-<meta name="twitter:description" content="各种生活,技术文章">
+<meta name="twitter:title" content="非基于比较的排序算法">
+<meta name="twitter:description" content="计数排序(Counting Sort)、桶排序、基数排序三个已经有不少很好的博客文章介绍，但不自己尝试描述一遍就难以熟悉，权当记录。
+参考了 计数排序，基数排序和桶排序和 三种线性排序算法 计数排序、桶排序与基数排序
+===
+计数排序首先是主要的步骤
+
+准备线性表字典 Dict[], 其长度 m 是待排序元素的范围, 换言之每个待排序的元素都能在这个字典找到对应的位置
+扫描长度为 n 的待排序表">
   
   
     <link rel="icon" href="favicon.png">
@@ -134,83 +153,136 @@ ga('send', 'pageview');
 </aside>
 
       
-      <section id="main">
-      <div class="archive-year-wrap">
-        <a href="/archives/2015" class="archive-year">2015</a>
-      </div>
-      <section class="archives-wrap">
-        <div class="archives">
+      <section id="main"><article id="post-非基于比较排序" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
     
-    <div class="archive-article-thumbnail">
-      <a href="/2015/12/19/the-lost-honour-of-christopher-jefferies/" class="thumbnail">
-  
-    <span class="thumbnail-image thumbnail-none"></span>
-  
-</a>
-    </div>
     
-    <header class="archive-article-header">
-      
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/12/19/the-lost-honour-of-christopher-jefferies/">the lost honour of christopher jefferies</a>
+    <h1 class="article-title" itemprop="name">
+      非基于比较的排序算法
     </h1>
   
 
-      
-        
-  <div class="archive-article-date">
+        <div class="article-meta">
+          
+  <div class="article-date">
     <i class="fa fa-calendar"></i>
-    <a href="/2015/12/19/the-lost-honour-of-christopher-jefferies/">
-      <time datetime="2015-12-19T15:17:57.000Z" itemprop="datePublished">Dec 19</time>
+    <a href="/2016/03/21/非基于比较排序/">
+      <time datetime="2016-03-21T15:42:16.000Z" itemprop="datePublished">2016-03-21</time>
     </a>
   </div>
 
 
-      
-    </header>
-  </div>
-</article>
-  
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
+          
+        </div>
+      </header>
     
-    <div class="archive-article-thumbnail">
-      <a href="/2015/09/26/捣腾博客的中文字体/" class="thumbnail">
-  
-    <span class="thumbnail-image thumbnail-none"></span>
-  
-</a>
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <p>计数排序(Counting Sort)、桶排序、基数排序三个已经有不少很好的博客文章介绍，但不自己尝试描述一遍就难以熟悉，权当记录。</p>
+<p>参考了 <a href="http://www.cnblogs.com/ttltry-air/archive/2012/08/04/2623302.html" target="_blank" rel="external">计数排序，基数排序和桶排序</a><br>和 <a href="https://www.byvoid.com/blog/sort-radix" target="_blank" rel="external">三种线性排序算法 计数排序、桶排序与基数排序</a></p>
+<p>===</p>
+<h3 id="计数排序">计数排序</h3><p>首先是主要的步骤</p>
+<ol>
+<li>准备线性表字典 Dict[], 其长度 m 是待排序元素的范围, 换言之每个待排序的元素都能在这个字典找到对应的位置</li>
+<li>扫描长度为 n 的待排序表 Unordered[], 把每个元素的出现次数记录在 Dict 里</li>
+<li>现在 Dict 记录着每个元素的的出现次数, 而 Dict 本身是有序的</li>
+<li>给 Dict 做累加, Dict[i] += Dict[i - 1] for i in 1 to m, </li>
+<li>累加后字典的值指定了元素排序后的位置，反向遍历待排序的A, 结合指定了元素位置的字典C 则可生成有序结果, 而反向遍历的元素会放在更后的位置, 这特性确保这是稳定排序</li>
+</ol>
+<p>C 语言例子</p>
+<pre><code><span class="comment">#include &lt;cstdlib&gt;</span>
+<span class="comment">#include &lt;cstdio&gt;</span>
+
+<span class="type">void</span> <span class="type">PrintArray</span>(<span class="type">int</span> *A, <span class="type">int</span> n)
+{
+    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i)
+        printf(<span class="string">"%d\t"</span>, A[i]);
+    printf(<span class="string">"\n"</span>);
+}
+
+<span class="type">void</span> <span class="type">CountingSort</span>(<span class="type">int</span> *A, <span class="type">int</span> n, <span class="type">int</span> *C, <span class="type">int</span> m, <span class="type">int</span> *<span class="type">Order</span>)
+{
+    printf(<span class="string">"Original Data: \n"</span>);
+    <span class="type">PrintArray</span>(A, n);
+
+    // initialize <span class="type">Dict</span>
+    memset(C, <span class="number">0</span>, m * sizeof(m));
+
+    // counting element <span class="keyword">of</span> A
+    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i)
+        C[A[i]]++;
+
+    printf(<span class="string">"Dict: Before Accumulate\n"</span>);
+    <span class="type">PrintArray</span>(C, m);
+
+    // scan C, accumulate,
+    // 累加后, C 字典里的值就是 元素有序后的位置, 因为每次取得和占用位置后应该减一, 使用字典C 逆遍历A 就可以保持稳定而有序
+    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; m; ++i)
+        C[i] += C[i - <span class="number">1</span>];
+
+    printf(<span class="string">"Dict: After Accumulate\n"</span>);
+    <span class="type">PrintArray</span>(C, m);
+
+
+    // reverse filling <span class="literal">result</span>, stable sort
+    <span class="keyword">for</span> (<span class="type">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)
+    {
+        <span class="type">Order</span>[C[A[i]]] = A[i]; // 根据字典 C 得知 A[i] 的位置（累加后的C 的值x : 前面有x个值比我小 )
+        C[A[i]]--;
+    }
+
+    printf(<span class="string">"Sorted Array:\n"</span>);
+    <span class="type">PrintArray</span>(<span class="type">Order</span>, n);
+
+}
+
+<span class="type">int</span> main()
+{
+    <span class="keyword">const</span> <span class="type">int</span> K = <span class="number">10</span>; // maximum <span class="keyword">in</span> <span class="type">range</span>, size <span class="keyword">of</span> C
+    <span class="keyword">const</span> <span class="type">int</span> N = <span class="number">20</span>; // size <span class="keyword">of</span> A
+
+    <span class="type">int</span> A[N] = {<span class="number">0</span>};
+    <span class="type">int</span> C[K + <span class="number">1</span>];
+    <span class="type">int</span> <span class="type">Order</span>[N]; // <span class="literal">result</span>
+
+    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; ++i)
+        A[i] = rand() % K;
+
+    <span class="type">CountingSort</span>(A, N, C, K, <span class="type">Order</span>);
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre><h3 id="桶排序_(Bucket_Sort)">桶排序 (Bucket Sort)</h3><h3 id="基数排序_(Radix_Sort)">基数排序 (Radix Sort)</h3>
+      
     </div>
+    <footer class="article-footer">
+      <a data-url="http://viennadd.github.io/2016/03/21/非基于比较排序/" data-id="cim3gc5uk00059nmlpuejwyww" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
     
-    <header class="archive-article-header">
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/09/26/捣腾博客的中文字体/">捣腾博客的中文字体</a>
-    </h1>
   
-
-      
-        
-  <div class="archive-article-date">
-    <i class="fa fa-calendar"></i>
-    <a href="/2015/09/26/捣腾博客的中文字体/">
-      <time datetime="2015-09-26T13:12:51.000Z" itemprop="datePublished">Sep 26</time>
+    <a href="/2016/03/11/最近看的剧/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">最近看的剧</div>
     </a>
-  </div>
-
-
-      
-    </header>
-  </div>
-</article>
   
-    </div></section>
-  </section>
+</nav>
+
+
+  
+</article>
+
+
+</section>
       
         <aside id="sidebar">
   
