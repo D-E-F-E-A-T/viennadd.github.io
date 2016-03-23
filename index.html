@@ -166,8 +166,8 @@ ga('send', 'pageview');
       
                 
         <p>计数排序(Counting Sort)、桶排序、基数排序三个已经有不少很好的博客文章介绍，但不自己尝试描述一遍就难以熟悉，权当记录。</p>
-<p>参考了 <a href="http://www.cnblogs.com/ttltry-air/archive/2012/08/04/2623302.html" target="_blank" rel="external">计数排序，基数排序和桶排序</a><br>和 <a href="https://www.byvoid.com/blog/sort-radix" target="_blank" rel="external">三种线性排序算法 计数排序、桶排序与基数排序</a></p>
-<p>===</p>
+<p>参考了 <a href="http://www.cnblogs.com/ttltry-air/archive/2012/08/04/2623302.html" target="_blank" rel="external">计数排序，基数排序和桶排序</a> 和 <a href="https://www.byvoid.com/blog/sort-radix" target="_blank" rel="external">三种线性排序算法 计数排序、桶排序与基数排序</a></p>
+<p>========</p>
 <h3 id="计数排序">计数排序</h3><p>首先是主要的步骤</p>
 <ol>
 <li>准备线性表字典 Dict[], 其长度 m 是待排序元素的范围, 换言之每个待排序的元素都能在这个字典找到对应的位置</li>
@@ -210,7 +210,6 @@ ga('send', 'pageview');
     printf(<span class="string">"Dict: After Accumulate\n"</span>);
     <span class="type">PrintArray</span>(C, m);
 
-
     // reverse filling <span class="literal">result</span>, stable sort
     <span class="keyword">for</span> (<span class="type">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)
     {
@@ -238,7 +237,12 @@ ga('send', 'pageview');
     <span class="type">CountingSort</span>(A, N, C, K, <span class="type">Order</span>);
     <span class="keyword">return</span> <span class="number">0</span>;
 }
-</code></pre><h3 id="桶排序_(Bucket_Sort)">桶排序 (Bucket Sort)</h3><h3 id="基数排序_(Radix_Sort)">基数排序 (Radix Sort)</h3>
+</code></pre><h3 id="桶排序_(Bucket_Sort)">桶排序 (Bucket Sort)</h3><p>在观看<a href="http://www.cs.usfca.edu/~galles/visualization/BucketSort.html" target="_blank" rel="external">http://www.cs.usfca.edu/~galles/visualization/BucketSort.html</a> 后, 感觉桶排序就像散列表，然后加入了顺序的想法。</p>
+<ol>
+<li>过程与计数排序的部分步骤相近, 建立 Dict 字典用以储存元素的出现情况, Dict 其实可以是线性表或者散列表, 看需求; 而本来在计数排序中的计数步骤这里则类似是散列表的 Chaining</li>
+<li>对字典项的 Chaining 进行排序, 字典是有序的, Chaining 也变成有序, 扫描一次把元素读取出来就完成排序了</li>
+</ol>
+<h3 id="基数排序_(Radix_Sort)">基数排序 (Radix Sort)</h3>
       
     </div>
     <footer class="article-footer">
