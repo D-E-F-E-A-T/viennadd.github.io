@@ -19,8 +19,8 @@
     <link rel="icon" href="favicon.png">
   
   
- <link href='//fonts.useso.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
- <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+ <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
 
 
   <link rel="stylesheet" href="/css/style.css" type="text/css">
@@ -117,12 +117,6 @@ ga('send', 'pageview');
           
           <td><a href="http://github.com/viennadd" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
           
-          <td><a href="/#" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
-          
-          <td><a href="/#" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></td>
-          
-          <td><a href="/#" target="_blank" title="dribbble"><i class="fa fa-dribbble"></i></a></td>
-          
           <td><a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
           
         </tr>
@@ -164,26 +158,14 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-                
         <p>计数排序(Counting Sort)、桶排序、基数排序三个已经有不少很好的博客文章介绍，但不自己尝试描述一遍就难以熟悉，权当记录。</p>
-<p>参考了 <a href="http://www.cnblogs.com/ttltry-air/archive/2012/08/04/2623302.html" target="_blank" rel="external">计数排序，基数排序和桶排序</a> 和 <a href="https://www.byvoid.com/blog/sort-radix" target="_blank" rel="external">三种线性排序算法 计数排序、桶排序与基数排序</a></p>
-<p>========</p>
-<h3 id="计数排序">计数排序</h3><p>首先是主要的步骤</p>
-<ol>
-<li>准备线性表字典 Dict[], 其长度 m 是待排序元素的范围, 换言之每个待排序的元素都能在这个字典找到对应的位置</li>
-<li>扫描长度为 n 的待排序表 Unordered[], 把每个元素的出现次数记录在 Dict 里</li>
-<li>现在 Dict 记录着每个元素的的出现次数, 而 Dict 本身是有序的</li>
-<li>给 Dict 做累加, Dict[i] += Dict[i - 1] for i in 1 to m, </li>
-<li>累加后字典的值指定了元素排序后的位置，反向遍历待排序的A, 结合指定了元素位置的字典C 则可生成有序结果, 而反向遍历的元素会放在更后的位置, 这特性确保这是稳定排序</li>
-</ol>
-<p>C 语言例子</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#include &lt;cstdlib&gt;</span><br><span class="line">   #include &lt;cstdio&gt;</span><br><span class="line"></span><br><span class="line">   void PrintArray(int *A, int n)</span><br><span class="line">   &#123;</span><br><span class="line">       for (int i = 0; i &lt; n; ++i)</span><br><span class="line">           printf("%d\t", A[i]);</span><br><span class="line">       printf("\n");</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   void CountingSort(int *A, int n, int *C, int m, int *Order)</span><br><span class="line">   &#123;</span><br><span class="line">       printf("Original Data: \n");</span><br><span class="line">       PrintArray(A, n);</span><br><span class="line"></span><br><span class="line">       // initialize Dict</span><br><span class="line">       memset(C, 0, m * sizeof(m));</span><br><span class="line"></span><br><span class="line">       // counting element of A</span><br><span class="line">       for (int i = 0; i &lt; n; ++i)</span><br><span class="line">           C[A[i]]++;</span><br><span class="line"></span><br><span class="line">       printf("Dict: Before Accumulate\n");</span><br><span class="line">       PrintArray(C, m);</span><br><span class="line"></span><br><span class="line">       // scan C, accumulate,</span><br><span class="line">       // 累加后, C 字典里的值就是 元素有序后的位置, 因为每次取得和占用位置后应该减一, 使用字典C 逆遍历A 就可以保持稳定而有序</span><br><span class="line">       for (int i = 1; i &lt; m; ++i)</span><br><span class="line">           C[i] += C[i - 1];</span><br><span class="line"></span><br><span class="line">       printf("Dict: After Accumulate\n");</span><br><span class="line">       PrintArray(C, m);</span><br><span class="line"></span><br><span class="line">       // reverse filling result, stable sort</span><br><span class="line">       for (int i = n - 1; i &gt;= 0; i--)</span><br><span class="line">       &#123;</span><br><span class="line">           Order[C[A[i]]] = A[i]; // 根据字典 C 得知 A[i] 的位置（累加后的C 的值x : 前面有x个值比我小 )</span><br><span class="line">           C[A[i]]--;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       printf("Sorted Array:\n");</span><br><span class="line">       PrintArray(Order, n);</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   int main()</span><br><span class="line">   &#123;</span><br><span class="line">       const int K = 10; // maximum in range, size of C</span><br><span class="line">       const int N = 20; // size of A</span><br><span class="line"></span><br><span class="line">       int A[N] = &#123;0&#125;;</span><br><span class="line">       int C[K + 1];</span><br><span class="line">       int Order[N]; // result</span><br><span class="line"></span><br><span class="line">       for (int i = 0; i &lt; N; ++i)</span><br><span class="line">           A[i] = rand() % K;</span><br><span class="line"></span><br><span class="line">       CountingSort(A, N, C, K, Order);</span><br><span class="line">       return 0;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="桶排序_(Bucket_Sort)">桶排序 (Bucket Sort)</h3><p>在观看<a href="http://www.cs.usfca.edu/~galles/visualization/BucketSort.html" target="_blank" rel="external">http://www.cs.usfca.edu/~galles/visualization/BucketSort.html</a> 后, 感觉桶排序就像散列表，然后加入了顺序的想法。</p>
-<ol>
-<li>过程与计数排序的部分步骤相近, 建立 Dict 字典用以储存元素的出现情况, Dict 其实可以是线性表或者散列表, 看需求; 而本来在计数排序中的计数步骤这里则类似是散列表的 Chaining</li>
-<li>对字典项的 Chaining 进行排序, 字典是有序的, Chaining 也变成有序, 扫描一次把元素读取出来就完成排序了</li>
-</ol>
-<h3 id="基数排序_(Radix_Sort)">基数排序 (Radix Sort)</h3>
+<p>参考了 <a href="http://www.cnblogs.com/ttltry-air/archive/2012/08/04/2623302.html">计数排序，基数排序和桶排序</a> 和 <a href="https://www.byvoid.com/blog/sort-radix">三种线性排序算法 计数排序、桶排序与基数排序</a></p>
+<hr>
+        
+          <p class="article-more-link">
+            <a href="/2016/03/21/非基于比较排序/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -232,25 +214,13 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-                
         <h3 id="电影">电影</h3><p><strong>Like Sunday Like Rain</strong><br>剧情轻松、吸引、感人，画面唯美，女主漂亮</p>
-<p><strong>向阳处的她</strong><br>刷上野树里系列之一，初恋题材，初恋的感觉，女主漂亮，不能确保不快进</p>
-<p><strong>恐怖直播</strong><br>低成本紧凑紧张悬疑故事，的确无尿点但并不能说很吸引</p>
-<p><strong>老男孩</strong><br>吸引，悬疑，人性，情色，暴力</p>
-<p><strong>大叔</strong><br>特工剧，动作、剧情安排都不错，喜爱特工题材的推荐特工经典《谍影重重》</p>
-<p><strong>热血警探</strong><br>打发时间、喜剧，可算搞笑，带上爆谷可乐休息一下吧</p>
-<p><strong>盗钥匙的方法</strong><br>打发时间、喜剧，可算搞笑，良伴于无眠之夜</p>
-<hr>
-<h3 id="电视剧">电视剧</h3><p><strong>Dr.伦太郎</strong><br>堺雅人/苍井优，关于精神健康，每个人都有病系列，整体还不错，女主母亲那角色太犀利所以要快进</p>
-<p><strong>胜者即正义 Legal High</strong><br>堺雅人/新垣结衣，喜剧，它的信条看你信不信了，打发时间</p>
-<p><strong>求婚大作战</strong><br>山下智久/长泽雅美，貌似当年在内地也是热潮，初恋的感觉</p>
-<p><strong>最后的朋友</strong><br>女二神了，围绕几个同伴关系的故事，男主那角色演的好所以要快进</p>
-<p><strong>交响情人梦</strong><br>玉木宏/上野树里，如果可以接受这种风格的话，电视剧要和SP 一起看了才完整，女主神了</p>
-<p><strong>家族的形式</strong><br>香取慎吾/上野树里，还在连载中，就是个电视剧，我就是去看女主的，一集突然就看完了，不知道什么吸引就被吸引了</p>
-<p><strong>琅琊榜</strong><br>胡歌，国产良心，就是集数有点多，故事长了变成打发时间</p>
-<p><strong>太阳的后裔</strong><br>宋钟基/宋慧乔，还在连载中，近年韩国爱情剧最好，真诚谈恋爱多好啊</p>
-<p><strong>秘密花园</strong><br>可算当年第一套韩剧，难免有些俗套剧情，但整体安排不错，表现出的那种一见钟情，中段吸引人，后段也感人</p>
-
+<p><strong>向阳处的她</strong><br>刷上野树里系列之一，初恋题材，初恋的感觉，女主漂亮，不能确保不快进<br>
+        
+          <p class="article-more-link">
+            <a href="/2016/03/11/最近看的剧/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -513,7 +483,7 @@ ga('send', 'pageview');
 
 
 
- <script src="//ajax.useso.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 
 
