@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://viennadd.github.io/"/>
-  <updated>2016-03-23T08:48:00.000Z</updated>
+  <updated>2016-03-23T09:43:37.000Z</updated>
   <id>http://viennadd.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://viennadd.github.io/2016/03/21/%E9%9D%9E%E5%9F%BA%E4%BA%8E%E6%AF%94%E8%BE%83%E6%8E%92%E5%BA%8F/"/>
     <id>http://viennadd.github.io/2016/03/21/非基于比较排序/</id>
     <published>2016-03-21T15:42:16.000Z</published>
-    <updated>2016-03-23T08:48:00.000Z</updated>
+    <updated>2016-03-23T09:43:37.000Z</updated>
     
     <content type="html">&lt;p&gt;计数排序(Counting Sort)、桶排序、基数排序三个已经有不少很好的博客文章介绍，但不自己尝试描述一遍就难以熟悉，权当记录。&lt;/p&gt;
 &lt;p&gt;参考了 &lt;a href=&quot;http://www.cnblogs.com/ttltry-air/archive/2012/08/04/2623302.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;计数排序，基数排序和桶排序&lt;/a&gt; 和 &lt;a href=&quot;https://www.byvoid.com/blog/sort-radix&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;三种线性排序算法 计数排序、桶排序与基数排序&lt;/a&gt;&lt;/p&gt;
@@ -51,6 +51,8 @@
     
     </summary>
     
+      <category term="Tech Notes" scheme="http://viennadd.github.io/categories/Tech-Notes/"/>
+    
     
   </entry>
   
@@ -59,30 +61,32 @@
     <link href="http://viennadd.github.io/2016/03/11/%E6%9C%80%E8%BF%91%E7%9C%8B%E7%9A%84%E5%89%A7/"/>
     <id>http://viennadd.github.io/2016/03/11/最近看的剧/</id>
     <published>2016-03-11T13:35:11.000Z</published>
-    <updated>2016-03-23T07:37:46.000Z</updated>
+    <updated>2016-03-23T09:41:40.000Z</updated>
     
-    <content type="html">&lt;h3 id=&quot;电影&quot;&gt;电影&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Like Sunday Like Rain&lt;/strong&gt;&lt;br&gt;剧情轻松、吸引、感人，画面唯美，女主漂亮&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;向阳处的她&lt;/strong&gt;&lt;br&gt;刷上野树里系列之一，初恋题材，初恋的感觉，女主漂亮，不能确保不快进&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;&lt;strong&gt;恐怖直播&lt;/strong&gt;&lt;br&gt;低成本紧凑紧张悬疑故事，的确无尿点但并不能说很吸引&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;老男孩&lt;/strong&gt;&lt;br&gt;吸引，悬疑，人性，情色，暴力&lt;/p&gt;
+    <content type="html">&lt;p&gt;&lt;img src=&quot;/img/最近看的剧/rewalkinpark.jpg&quot; alt=&quot;如晴天似雨天&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;电影&quot;&gt;电影&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Like Sunday Like Rain&lt;/strong&gt;&lt;br&gt;剧情轻松、吸引、感人、画面唯美、女主漂亮&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;向阳处的她&lt;/strong&gt;&lt;br&gt;刷上野树里系列之一，初恋的感觉，女主漂亮&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;&lt;strong&gt;恐怖直播&lt;/strong&gt;&lt;br&gt;低成本紧凑紧张悬疑故事，的确无尿点但并不能说很吸引&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;老男孩&lt;/strong&gt;&lt;br&gt;吸引、悬疑、人性、情色、暴力&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;大叔&lt;/strong&gt;&lt;br&gt;特工剧，动作、剧情安排都不错，喜爱特工题材的推荐特工经典《谍影重重》&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;热血警探&lt;/strong&gt;&lt;br&gt;打发时间、喜剧，可算搞笑，带上爆谷可乐休息一下吧&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;盗钥匙的方法&lt;/strong&gt;&lt;br&gt;打发时间、喜剧，可算搞笑，良伴于无眠之夜&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;热血警探&lt;/strong&gt;&lt;br&gt;打发时间、喜剧，带上爆谷可乐休息一下吧&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;盗钥匙的方法&lt;/strong&gt;&lt;br&gt;打发时间、喜剧，良伴于无眠之夜&lt;/p&gt;
 &lt;hr&gt;
-&lt;h3 id=&quot;电视剧&quot;&gt;电视剧&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Dr.伦太郎&lt;/strong&gt;&lt;br&gt;堺雅人/苍井优，关于精神健康，每个人都有病系列，整体还不错，女主母亲那角色太犀利所以要快进&lt;/p&gt;
+&lt;h3 id=&quot;电视剧&quot;&gt;电视剧&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Dr.伦太郎&lt;/strong&gt;&lt;br&gt;堺雅人/苍井优，关于精神健康，每个人都有病系列，整体还不错，女主母亲演得杠杠的&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;胜者即正义 Legal High&lt;/strong&gt;&lt;br&gt;堺雅人/新垣结衣，喜剧，它的信条看你信不信了，打发时间&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;求婚大作战&lt;/strong&gt;&lt;br&gt;山下智久/长泽雅美，貌似当年在内地也是热潮，初恋的感觉&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;最后的朋友&lt;/strong&gt;&lt;br&gt;女二神了，围绕几个同伴关系的故事，男主那角色演的好所以要快进&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;交响情人梦&lt;/strong&gt;&lt;br&gt;玉木宏/上野树里，如果可以接受这种风格的话，电视剧要和SP 一起看了才完整，女主神了&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;家族的形式&lt;/strong&gt;&lt;br&gt;香取慎吾/上野树里，还在连载中，就是个电视剧，我就是去看女主的，一集突然就看完了，不知道什么吸引就被吸引了&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;琅琊榜&lt;/strong&gt;&lt;br&gt;胡歌，国产良心，就是集数有点多，故事长了变成打发时间&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;太阳的后裔&lt;/strong&gt;&lt;br&gt;宋钟基/宋慧乔，还在连载中，近年韩国爱情剧最好，真诚谈恋爱多好啊&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;秘密花园&lt;/strong&gt;&lt;br&gt;可算当年第一套韩剧，难免有些俗套剧情，但整体安排不错，表现出的那种一见钟情，中段吸引人，后段也感人&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;最后的朋友&lt;/strong&gt;&lt;br&gt;围绕几个同伴关系的故事，男主暴力时间得快进，好评，女二神演技&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;交响情人梦&lt;/strong&gt;&lt;br&gt;玉木宏/上野树里，如果可以接受这种风格的话，电视剧要和SP 一起看了才完整，女主神演技&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;家族的形式&lt;/strong&gt;&lt;br&gt;香取慎吾/上野树里，还在连载中，就是个电视剧，我就是去看女主的，一集突然就看完了，不知道什么吸引就被吸引了&lt;br&gt;刚刚完结，好评&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;琅琊榜&lt;/strong&gt;&lt;br&gt;胡歌，国产良心，就是集数有点多，只是故事长了变成打发时间&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;太阳的后裔&lt;/strong&gt;&lt;br&gt;宋钟基/宋慧乔，还在连载中，已经是近年韩国爱情剧最好，所谓”势均力敌”的爱情&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;秘密花园&lt;/strong&gt;&lt;br&gt;可算当年第一套韩剧，难免有些俗套剧情，但整体安排很不错，那种一见钟情，中段吸引，后段感人&lt;/p&gt;
 </content>
     
     <summary type="html">
     
-      &lt;h3 id=&quot;电影&quot;&gt;电影&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Like Sunday Like Rain&lt;/strong&gt;&lt;br&gt;剧情轻松、吸引、感人，画面唯美，女主漂亮&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;向阳处的她&lt;/strong&gt;&lt;br&gt;刷上野树里系列之一，初恋题材，初恋的感觉，女主漂亮，不能确保不快进&lt;br&gt;
+      &lt;p&gt;&lt;img src=&quot;/img/最近看的剧/rewalkinpark.jpg&quot; alt=&quot;如晴天似雨天&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;电影&quot;&gt;电影&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Like Sunday Like Rain&lt;/strong&gt;&lt;br&gt;剧情轻松、吸引、感人、画面唯美、女主漂亮&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;向阳处的她&lt;/strong&gt;&lt;br&gt;刷上野树里系列之一，初恋的感觉，女主漂亮&lt;br&gt;
     
     </summary>
     
@@ -96,18 +100,18 @@
     <link href="http://viennadd.github.io/2015/12/19/the-lost-honour-of-christopher-jefferies/"/>
     <id>http://viennadd.github.io/2015/12/19/the-lost-honour-of-christopher-jefferies/</id>
     <published>2015-12-19T15:17:57.000Z</published>
-    <updated>2015-12-20T07:21:21.000Z</updated>
+    <updated>2016-03-23T09:39:45.000Z</updated>
     
     <content type="html">&lt;p&gt;剧情、人物、画面、节奏、配乐皆好&lt;/p&gt;
 &lt;p&gt;主角是个纯粹( with honour )的人，与之对比的是大众和媒体的『正常』&lt;/p&gt;
-&lt;p&gt;没有典型的紧张紧凑，却能自然地引人投入&lt;/p&gt;
+&lt;p&gt;没有典型的紧张紧凑，自然就引人投入&lt;/p&gt;
 </content>
     
     <summary type="html">
     
       &lt;p&gt;剧情、人物、画面、节奏、配乐皆好&lt;/p&gt;
 &lt;p&gt;主角是个纯粹( with honour )的人，与之对比的是大众和媒体的『正常』&lt;/p&gt;
-&lt;p&gt;没有典型的紧张紧凑，却能自然地引人投入&lt;/p&gt;
+&lt;p&gt;没有典型的紧张紧凑，自然就引人投入&lt;/p&gt;
 
     
     </summary>
