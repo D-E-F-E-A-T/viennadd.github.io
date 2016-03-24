@@ -379,11 +379,11 @@ html ::selection {
   margin-right: 5px;
 }
 .header-inner #logo .site-title {
-  font-size: 25px;
+  font-size: 30px;
   font-family: lixukexingshu;
   display: inline-block;
   vertical-align: top;
-  font-weight: 600;
+  font-weight: 400;
 }
 #header-title {
   text-align: center;
@@ -898,6 +898,8 @@ a.article-title:hover {
   height: auto;
   display: block;
   margin: auto;
+  -webkit-box-shadow: 0px 3px 3px rgba(0,0,0,0.3);
+  box-shadow: 0px 3px 3px rgba(0,0,0,0.3);
 }
 .article-entry iframe {
   border: none;
