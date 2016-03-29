@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://dd3.org/"/>
-  <updated>2016-03-28T13:21:50.000Z</updated>
+  <updated>2016-03-29T11:21:40.000Z</updated>
   <id>http://dd3.org/</id>
   
   <author>
@@ -16,11 +16,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>日剧《我与明星的99日》</title>
+    <link href="http://dd3.org/2016/03/29/%E6%97%A5%E5%89%A7%E3%80%8A%E6%88%91%E4%B8%8E%E6%98%8E%E6%98%9F%E7%9A%8499%E6%97%A5%E3%80%8B/"/>
+    <id>http://dd3.org/2016/03/29/日剧《我与明星的99日》/</id>
+    <published>2016-03-29T11:19:49.000Z</published>
+    <updated>2016-03-29T11:21:40.000Z</updated>
+    
+    <content type="html">&lt;p&gt;金泰熙好漂亮。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;金泰熙好漂亮。&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="TV series" scheme="http://dd3.org/categories/TV-series/"/>
+    
+    
+      <category term="日剧" scheme="http://dd3.org/tags/%E6%97%A5%E5%89%A7/"/>
+    
+      <category term="金泰熙" scheme="http://dd3.org/tags/%E9%87%91%E6%B3%B0%E7%86%99/"/>
+    
+  </entry>
+  
+  <entry>
     <title>韩剧《未生》</title>
     <link href="http://dd3.org/2016/03/28/%E9%9F%A9%E5%89%A7%E3%80%8A%E6%9C%AA%E7%94%9F%E3%80%8B/"/>
     <id>http://dd3.org/2016/03/28/韩剧《未生》/</id>
     <published>2016-03-28T12:48:47.000Z</published>
-    <updated>2016-03-28T13:21:50.000Z</updated>
+    <updated>2016-03-29T11:12:14.000Z</updated>
     
     <content type="html">&lt;h3 id=&quot;未生、完生&quot;&gt;未生、完生&lt;/h3&gt;&lt;p&gt;一年内断断续续的看完了这部剧, 第一次看到『未生』这词完全想不到什么意思, 其实这是个韩国的围棋术语。『未生』对应『完生』, 完生其实就是双眼活棋, 未生就借喻职场新人了。&lt;/p&gt;
 &lt;p&gt;不同于某些套题作文剧, 是有共鸣在, 这励志鸡汤熬得不错。&lt;/p&gt;
@@ -34,7 +60,7 @@
     
     </summary>
     
-      <category term="TV Series" scheme="http://dd3.org/categories/TV-Series/"/>
+      <category term="TV series" scheme="http://dd3.org/categories/TV-series/"/>
     
     
       <category term="围棋" scheme="http://dd3.org/tags/%E5%9B%B4%E6%A3%8B/"/>
@@ -50,7 +76,7 @@
     <link href="http://dd3.org/2016/03/21/%E9%9D%9E%E5%9F%BA%E4%BA%8E%E6%AF%94%E8%BE%83%E6%8E%92%E5%BA%8F/"/>
     <id>http://dd3.org/2016/03/21/非基于比较排序/</id>
     <published>2016-03-21T15:42:16.000Z</published>
-    <updated>2016-03-25T06:54:38.000Z</updated>
+    <updated>2016-03-28T13:24:28.000Z</updated>
     
     <content type="html">&lt;p&gt;计数排序(Counting Sort)、桶排序、基数排序三个已经有不少很好的博客文章介绍，但不自己尝试描述一遍就难以熟悉，权当记录。&lt;/p&gt;
 &lt;p&gt;参考了 &lt;a href=&quot;http://www.cnblogs.com/ttltry-air/archive/2012/08/04/2623302.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;计数排序，基数排序和桶排序&lt;/a&gt; 和 &lt;a href=&quot;https://www.byvoid.com/blog/sort-radix&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;三种线性排序算法 计数排序、桶排序与基数排序&lt;/a&gt;&lt;/p&gt;
@@ -88,6 +114,8 @@
       <category term="Tech Notes" scheme="http://dd3.org/categories/Tech-Notes/"/>
     
     
+      <category term="排序" scheme="http://dd3.org/tags/%E6%8E%92%E5%BA%8F/"/>
+    
   </entry>
   
   <entry>
@@ -95,7 +123,7 @@
     <link href="http://dd3.org/2016/03/11/%E6%9C%80%E8%BF%91%E7%9C%8B%E7%9A%84%E5%89%A7/"/>
     <id>http://dd3.org/2016/03/11/最近看的剧/</id>
     <published>2016-03-11T13:35:11.000Z</published>
-    <updated>2016-03-23T09:41:40.000Z</updated>
+    <updated>2016-03-29T11:12:20.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;img src=&quot;/img/最近看的剧/rewalkinpark.jpg&quot; alt=&quot;如晴天似雨天&quot;&gt;&lt;/p&gt;
 &lt;h3 id=&quot;电影&quot;&gt;电影&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Like Sunday Like Rain&lt;/strong&gt;&lt;br&gt;剧情轻松、吸引、感人、画面唯美、女主漂亮&lt;/p&gt;
@@ -124,7 +152,7 @@
     
     </summary>
     
-      <category term="TV Series" scheme="http://dd3.org/categories/TV-Series/"/>
+      <category term="TV series" scheme="http://dd3.org/categories/TV-series/"/>
     
     
   </entry>
@@ -134,7 +162,7 @@
     <link href="http://dd3.org/2015/12/19/the-lost-honour-of-christopher-jefferies/"/>
     <id>http://dd3.org/2015/12/19/the-lost-honour-of-christopher-jefferies/</id>
     <published>2015-12-19T15:17:57.000Z</published>
-    <updated>2016-03-23T09:39:45.000Z</updated>
+    <updated>2016-03-29T11:12:17.000Z</updated>
     
     <content type="html">&lt;p&gt;剧情、人物、画面、节奏、配乐皆好&lt;/p&gt;
 &lt;p&gt;主角是个纯粹( with honour )的人，与之对比的是大众和媒体的『正常』&lt;/p&gt;
@@ -150,7 +178,7 @@
     
     </summary>
     
-      <category term="TV Series" scheme="http://dd3.org/categories/TV-Series/"/>
+      <category term="TV series" scheme="http://dd3.org/categories/TV-series/"/>
     
     
   </entry>
