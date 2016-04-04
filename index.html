@@ -163,7 +163,8 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>唉, 不熟练连这样的题都不会开步。。</p>
+        <p>唉, 不熟练连这样的题都不会入手。。</p>
+<p>题目大概是这样 <a href="http://icpc.ahu.edu.cn/OJ/ContestProblem.aspx?cid=16&amp;id=410">http://icpc.ahu.edu.cn/OJ/ContestProblem.aspx?cid=16&amp;id=410</a><br>参考了 <a href="http://www.cnblogs.com/kaima/p/4773908.html">http://www.cnblogs.com/kaima/p/4773908.html</a></p>
 <p>外部的 while 循环检查 number 是否到 N * N, 如果 N 为偶数则可以在这里停下, (最后四个位置刚好填完)<br>里面第一个 if 检查奇数 N 的情况(会填充剩下一个位置)</p>
 <p>然后开始填充数组, 调节 x y 的坐标值填充一圈蛇形, 一圈后 x y 回归原点<br>缩小 size 变量<br>x+1, y+1 跳入内圈重复以上步骤又填充一圈, 直至跳出</p>
 <p><img src="/img/打印蛇形数组/snake.jpg" alt="x y 走向"><br>
