@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://dd3.org/"/>
-  <updated>2016-04-24T05:59:00.000Z</updated>
+  <updated>2016-06-22T07:32:54.000Z</updated>
   <id>http://dd3.org/</id>
   
   <author>
@@ -14,6 +14,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>山寨了个贪吃蛇</title>
+    <link href="http://dd3.org/2016/06/22/%E5%B1%B1%E5%AF%A8%E4%BA%86%E4%B8%AA%E8%B4%AA%E5%90%83%E8%9B%87/"/>
+    <id>http://dd3.org/2016/06/22/山寨了个贪吃蛇/</id>
+    <published>2016-06-22T07:26:29.000Z</published>
+    <updated>2016-06-22T07:32:54.000Z</updated>
+    
+    <content type="html">&lt;p&gt;看到知乎一个条问答：&lt;a href=&quot;https://www.zhihu.com/question/36280350&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;计算机应届生简历中，「贪吃蛇，俄罗斯方块」等小项目有必要写到简历中吗？&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;就试做了个贪吃蛇&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://gist.github.com/viennadd/a67047dd21cf74fe2d034cd44a43fa31&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://gist.github.com/viennadd/a67047dd21cf74fe2d034cd44a43fa31&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;刚开搞的时候发现命令行的按键处理都是平台相关的，就用 getchar 代替，需要按回车才有反馈2333，用户体验下降。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;看到知乎一个条问答：&lt;a href=&quot;https://www.zhihu.com/question/36280350&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;计算机应届生简历中，「贪吃蛇，俄罗斯方块」等小项目有必要写到简历中吗？&lt;/a&gt;&lt;/p&gt;
+&lt;p
+    
+    </summary>
+    
+      <category term="Tech Notes" scheme="http://dd3.org/categories/Tech-Notes/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Ubuntu 对 Retina Display 的支持</title>
