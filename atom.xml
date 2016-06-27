@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://dd3.org/"/>
-  <updated>2016-06-22T07:32:54.000Z</updated>
+  <updated>2016-06-27T03:34:47.000Z</updated>
   <id>http://dd3.org/</id>
   
   <author>
@@ -16,16 +16,55 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>理解 TCP 的三次握手、四次挥手</title>
+    <link href="http://dd3.org/2016/06/27/%E7%90%86%E8%A7%A3-TCP-%E7%9A%84%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E3%80%81%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/"/>
+    <id>http://dd3.org/2016/06/27/理解-TCP-的三次握手、四次挥手/</id>
+    <published>2016-06-27T03:11:03.000Z</published>
+    <updated>2016-06-27T03:34:47.000Z</updated>
+    
+    <content type="html">&lt;p&gt;三次握手是这样&lt;/p&gt;
+&lt;p&gt;第一次（客户端 to 服务端）：我想建立连接，你听到吗？&lt;br&gt;如果服务端收到第一次握手的请求后，则可以确认：[客户端 to 服务端] 是畅通的。&lt;br&gt;客户端还不知道任何是否畅通的情况&lt;/p&gt;
+&lt;p&gt;第二次（服务端 to 客户端）：我收到你的请求了，可以建立连接啊，你听得到吗？&lt;br&gt;此时，服务端可以确认的事情是：[客户端 to 服务端] 是畅通的。&lt;br&gt;客户端如果收到第二次握手的服务端回复后，则可以确认 [客户端 to 服务端], [服务端 to 客户端] 都是畅通的。&lt;/p&gt;
+&lt;p&gt;第三次（客户端 to 服务端）：我听到你说可以建立连接了。&lt;br&gt;上面已经确认了[客户端 to 服务端] 是畅通的，这个包不会有问题。&lt;br&gt;此时如果服务端收到确认后，知道的事情有：[客户端 to 服务端]，[服务端 to 客户端] 都是畅通，&lt;br&gt;而客户端也知道 [客户端 to 服务端], [服务端 to 客户端] 都是畅通。&lt;/p&gt;
+&lt;p&gt;好的，三次握手确认了双方畅通。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;然后为啥要四次挥手呢，&lt;/p&gt;
+&lt;p&gt;现时情况：双方建立了连接，可以互相发送数据&lt;br&gt;首先我这边想断了连接，那我第一次挥手，说：我要断开，从现在起我也不给你发数据了，&lt;/p&gt;
+&lt;p&gt;他那边收到了这个断开请求后，先发出一个确认包：好的，好的，我知道了，&lt;br&gt;我先收到这个确认后，就知道他收到了我的断开请求了。&lt;/p&gt;
+&lt;p&gt;然而因为他那边也是可以发送数据的，突然让他停下来，他也得把手上的事情干完啊，那对方等到手上没事情后（数据发完了），就会再发出一个：好的，断开吧。&lt;/p&gt;
+&lt;p&gt;最后我这边收到他的就绪信息后，现在大家都没事了，断开吧。&lt;/p&gt;
+&lt;p&gt;嗯，四次挥手就这样。&lt;/p&gt;
+&lt;p&gt;Reference:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mp.weixin.qq.com/s?__biz=MzIyNTA1NzAxOA==&amp;amp;mid=2650473778&amp;amp;idx=1&amp;amp;sn=43906c61316fc9a899f999783d3a9eb3&amp;amp;scene=0#wechat_redirect&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;戏说西游||TCP/IP协议的由来&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.cnblogs.com/SeaSky0606/p/4741982.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;为什么“三次握手，四次挥手”？&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;三次握手是这样&lt;/p&gt;
+&lt;p&gt;第一次（客户端 to 服务端）：我想建立连接，你听到吗？&lt;br&gt;如果服务端收到第一次握手的请求后，则可以确认：[客户端 to 服务端] 是畅通的。&lt;br&gt;客户端还不知道任何是否畅通的情况&lt;/p&gt;
+&lt;p&gt;第二次（服务端 to 客户端）：我收到你的请求了，可以建立连接啊，你听得到吗？&lt;br&gt;此时，服务端可以确认的事情是：[客户端 to 服务端] 是畅通的。&lt;br&gt;客户端如果收到第二次握手的服务端回复后，则可以确认 [客户端 to 服务端], [服务端 to 客户端] 都是畅通的。&lt;/p&gt;
+&lt;p&gt;第三次（客户端 to 服务端）：我听到你说可以建立连接了。&lt;br&gt;上面已经确认了[客户端 to 服务端] 是畅通的，这个包不会有问题。&lt;br&gt;此时如果服务端收到确认后，知道的事情有：[客户端 to 服务端]，[服务端 to 客户端] 都是畅通，&lt;br&gt;而客户端也知道 [客户端 to 服务端], [服务端 to 客户端] 都是畅通。&lt;/p&gt;
+&lt;p&gt;好的，三次握手确认了双方畅通。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Tech Notes" scheme="http://dd3.org/categories/Tech-Notes/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>山寨了个贪吃蛇</title>
     <link href="http://dd3.org/2016/06/22/%E5%B1%B1%E5%AF%A8%E4%BA%86%E4%B8%AA%E8%B4%AA%E5%90%83%E8%9B%87/"/>
     <id>http://dd3.org/2016/06/22/山寨了个贪吃蛇/</id>
     <published>2016-06-22T07:26:29.000Z</published>
-    <updated>2016-06-22T07:32:54.000Z</updated>
+    <updated>2016-06-22T07:37:41.000Z</updated>
     
     <content type="html">&lt;p&gt;看到知乎一个条问答：&lt;a href=&quot;https://www.zhihu.com/question/36280350&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;计算机应届生简历中，「贪吃蛇，俄罗斯方块」等小项目有必要写到简历中吗？&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;就试做了个贪吃蛇&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://gist.github.com/viennadd/a67047dd21cf74fe2d034cd44a43fa31&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://gist.github.com/viennadd/a67047dd21cf74fe2d034cd44a43fa31&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;刚开搞的时候发现命令行的按键处理都是平台相关的，就用 getchar 代替，需要按回车才有反馈2333，用户体验下降。&lt;/p&gt;
+&lt;p&gt;刚开搞的时候发现命令行的按键处理都是平台相关的，就用 getchar 代替，需要按回车，&lt;/p&gt;
 </content>
     
     <summary type="html">

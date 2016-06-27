@@ -3,17 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2016/4 | 风吹雪</title>
+  <title>理解 TCP 的三次握手、四次挥手 | 风吹雪</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="各种生活,技术文章">
-<meta property="og:type" content="website">
-<meta property="og:title" content="风吹雪">
-<meta property="og:url" content="http://dd3.org/archives/2016/04/index.html">
+  <meta name="description" content="三次握手是这样
+第一次（客户端 to 服务端）：我想建立连接，你听到吗？如果服务端收到第一次握手的请求后，则可以确认：[客户端 to 服务端] 是畅通的。客户端还不知道任何是否畅通的情况
+第二次（服务端 to 客户端）：我收到你的请求了，可以建立连接啊，你听得到吗？此时，服务端可以确认的事情是：[客户端 to 服务端] 是畅通的。客户端如果收到第二次握手的服务端回复后，则可以确认 [客户端 to">
+<meta property="og:type" content="article">
+<meta property="og:title" content="理解 TCP 的三次握手、四次挥手">
+<meta property="og:url" content="http://dd3.org/2016/06/27/理解-TCP-的三次握手、四次挥手/index.html">
 <meta property="og:site_name" content="风吹雪">
-<meta property="og:description" content="各种生活,技术文章">
+<meta property="og:description" content="三次握手是这样
+第一次（客户端 to 服务端）：我想建立连接，你听到吗？如果服务端收到第一次握手的请求后，则可以确认：[客户端 to 服务端] 是畅通的。客户端还不知道任何是否畅通的情况
+第二次（服务端 to 客户端）：我收到你的请求了，可以建立连接啊，你听得到吗？此时，服务端可以确认的事情是：[客户端 to 服务端] 是畅通的。客户端如果收到第二次握手的服务端回复后，则可以确认 [客户端 to">
+<meta property="og:updated_time" content="2016-06-27T03:34:47.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="风吹雪">
-<meta name="twitter:description" content="各种生活,技术文章">
+<meta name="twitter:title" content="理解 TCP 的三次握手、四次挥手">
+<meta name="twitter:description" content="三次握手是这样
+第一次（客户端 to 服务端）：我想建立连接，你听到吗？如果服务端收到第一次握手的请求后，则可以确认：[客户端 to 服务端] 是畅通的。客户端还不知道任何是否畅通的情况
+第二次（服务端 to 客户端）：我收到你的请求了，可以建立连接啊，你听得到吗？此时，服务端可以确认的事情是：[客户端 to 服务端] 是畅通的。客户端如果收到第二次握手的服务端回复后，则可以确认 [客户端 to">
   
   
     <link rel="icon" href="favicon.png">
@@ -128,118 +135,91 @@ ga('send', 'pageview');
 </aside>
 
       
-      <section id="main">
-      <div class="archive-year-wrap">
-        <a href="/archives/2016" class="archive-year">2016</a>
-      </div>
-      <section class="archives-wrap">
-        <div class="archives">
+      <section id="main"><article id="post-理解-TCP-的三次握手、四次挥手" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
     
-    <div class="archive-article-thumbnail">
-      <a href="/2016/04/24/Ubuntu-对-Retina-Display-的支持/" class="thumbnail">
-  
-    <span class="thumbnail-image thumbnail-none"></span>
-  
-</a>
-    </div>
     
-    <header class="archive-article-header">
-      
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/24/Ubuntu-对-Retina-Display-的支持/">Ubuntu 对 Retina Display 的支持</a>
+    <h1 class="article-title" itemprop="name">
+      理解 TCP 的三次握手、四次挥手
     </h1>
   
 
-      
-        
-  <div class="archive-article-date">
+        <div class="article-meta">
+          
+  <div class="article-date">
     <i class="fa fa-calendar"></i>
-    <a href="/2016/04/24/Ubuntu-对-Retina-Display-的支持/">
-      <time datetime="2016-04-24T05:54:00.000Z" itemprop="datePublished">Apr 24</time>
+    <a href="/2016/06/27/理解-TCP-的三次握手、四次挥手/">
+      <time datetime="2016-06-27T03:11:03.000Z" itemprop="datePublished">2016-06-27</time>
     </a>
   </div>
 
 
-      
-    </header>
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Tech-Notes/">Tech Notes</a>
   </div>
-</article>
-  
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
+
+        </div>
+      </header>
     
-    <div class="archive-article-thumbnail">
-      <a href="/2016/04/07/Leetcode-Median-of-Two-Sorted-Arrays/" class="thumbnail">
-  
-    <span class="thumbnail-image thumbnail-none"></span>
-  
-</a>
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <p>三次握手是这样</p>
+<p>第一次（客户端 to 服务端）：我想建立连接，你听到吗？<br>如果服务端收到第一次握手的请求后，则可以确认：[客户端 to 服务端] 是畅通的。<br>客户端还不知道任何是否畅通的情况</p>
+<p>第二次（服务端 to 客户端）：我收到你的请求了，可以建立连接啊，你听得到吗？<br>此时，服务端可以确认的事情是：[客户端 to 服务端] 是畅通的。<br>客户端如果收到第二次握手的服务端回复后，则可以确认 [客户端 to 服务端], [服务端 to 客户端] 都是畅通的。</p>
+<p>第三次（客户端 to 服务端）：我听到你说可以建立连接了。<br>上面已经确认了[客户端 to 服务端] 是畅通的，这个包不会有问题。<br>此时如果服务端收到确认后，知道的事情有：[客户端 to 服务端]，[服务端 to 客户端] 都是畅通，<br>而客户端也知道 [客户端 to 服务端], [服务端 to 客户端] 都是畅通。</p>
+<p>好的，三次握手确认了双方畅通。</p>
+<a id="more"></a>
+<p>然后为啥要四次挥手呢，</p>
+<p>现时情况：双方建立了连接，可以互相发送数据<br>首先我这边想断了连接，那我第一次挥手，说：我要断开，从现在起我也不给你发数据了，</p>
+<p>他那边收到了这个断开请求后，先发出一个确认包：好的，好的，我知道了，<br>我先收到这个确认后，就知道他收到了我的断开请求了。</p>
+<p>然而因为他那边也是可以发送数据的，突然让他停下来，他也得把手上的事情干完啊，那对方等到手上没事情后（数据发完了），就会再发出一个：好的，断开吧。</p>
+<p>最后我这边收到他的就绪信息后，现在大家都没事了，断开吧。</p>
+<p>嗯，四次挥手就这样。</p>
+<p>Reference:</p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIyNTA1NzAxOA==&amp;mid=2650473778&amp;idx=1&amp;sn=43906c61316fc9a899f999783d3a9eb3&amp;scene=0#wechat_redirect" target="_blank" rel="external">戏说西游||TCP/IP协议的由来</a></p>
+<p><a href="http://www.cnblogs.com/SeaSky0606/p/4741982.html" target="_blank" rel="external">为什么“三次握手，四次挥手”？</a></p>
+
+      
     </div>
+    <footer class="article-footer">
+      <a data-url="http://dd3.org/2016/06/27/理解-TCP-的三次握手、四次挥手/" data-id="cipxh19ts000nlcml0qb8ya3v" class="article-share-link">Share</a>
+      
+        <a href="http://dd3.org/2016/06/27/理解-TCP-的三次握手、四次挥手/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
     
-    <header class="archive-article-header">
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/07/Leetcode-Median-of-Two-Sorted-Arrays/">Leetcode - Median of Two Sorted Arrays</a>
-    </h1>
   
-
-      
-        
-  <div class="archive-article-date">
-    <i class="fa fa-calendar"></i>
-    <a href="/2016/04/07/Leetcode-Median-of-Two-Sorted-Arrays/">
-      <time datetime="2016-04-07T15:19:05.000Z" itemprop="datePublished">Apr 7</time>
+    <a href="/2016/06/22/山寨了个贪吃蛇/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">山寨了个贪吃蛇</div>
     </a>
-  </div>
+  
+</nav>
 
 
-      
-    </header>
-  </div>
+  
 </article>
-  
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    
-    <div class="archive-article-thumbnail">
-      <a href="/2016/04/05/打印蛇形数组/" class="thumbnail">
-  
-    <span style="background-image:url(/img/打印蛇形数组/snake.jpg
-)" alt="打印蛇形数组" class="thumbnail-image"></span>
-  
-</a>
-    </div>
-    
-    <header class="archive-article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/05/打印蛇形数组/">打印蛇形数组</a>
-    </h1>
-  
 
-      
-        
-  <div class="archive-article-date">
-    <i class="fa fa-calendar"></i>
-    <a href="/2016/04/05/打印蛇形数组/">
-      <time datetime="2016-04-04T16:34:47.000Z" itemprop="datePublished">Apr 5</time>
-    </a>
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   </div>
+</section>
 
-
-      
-    </header>
-  </div>
-</article>
-  
-    </div></section>
-  </section>
+</section>
       
         <aside id="sidebar">
   
@@ -402,7 +382,7 @@ ga('send', 'pageview');
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
