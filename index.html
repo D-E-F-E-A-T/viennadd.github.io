@@ -163,7 +163,7 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="ALARM_signal_自动退出程序">ALARM signal 自动退出程序</h3><p>首先把玩一下，发现有个 alarm 事件令程序在一分钟后退出，这里在二进制修改一下时间值去掉这个小玩意，并不会影响后续堆溢出的分析。</p>
+        <h2 id="ALARM_signal_自动退出程序">ALARM signal 自动退出程序</h2><p>首先把玩一下，发现有个 alarm 事件令程序在一分钟后退出，这里在二进制修改一下时间值去掉这个小玩意，并不会影响后续堆溢出的分析。</p>
 <p>时间值在 main 函数上作为立即数传给 alarm，用 IDA 或别的反汇编工具可以看到<br>一时间没有好用的二进制编辑，发现用 vi 也非常方便<br><a href="https://www.zhihu.com/question/22281280/answer/34778466">https://www.zhihu.com/question/22281280/answer/34778466</a></p>
 <p><img src="/img/shellman_分析/alarm.png" alt="ALARM signal 时长"></p>
 <p>之后的动态分析会用这个修改过的 shellman_noalarm 就不会一分钟后退出，看了网上一些介绍 gdb 可以屏蔽 ALARM signal， 也是可行方法吧。</p>
