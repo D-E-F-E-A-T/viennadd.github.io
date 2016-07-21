@@ -17,7 +17,7 @@
 <meta property="og:image" content="http://dd3.org/img/shellman_分析/new_size.png">
 <meta property="og:image" content="http://dd3.org/img/shellman_分析/new_struct.png">
 <meta property="og:image" content="http://dd3.org/img/shellman_分析/new_struct2.png">
-<meta property="og:updated_time" content="2016-07-21T08:58:20.000Z">
+<meta property="og:updated_time" content="2016-07-21T08:59:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="shellman 一个 Linux 堆溢出利用例题的分析">
 <meta name="twitter:description" content="ALARM signal 自动退出程序首先把玩一下，发现有个 alarm 事件令程序在一分钟后退出，这里在二进制修改一下时间值去掉这个小玩意，并不会影响后续堆溢出的分析。
@@ -181,7 +181,13 @@ ga('send', 'pageview');
 <p><img src="/img/shellman_分析/new_size.png" alt="新 shellcode 的 size"></p>
 <p>在新增 shellcode 的这个函数里，可以发现总 shellcode 的 counter 全局变量和一个全局数组用来储存每条 record 的资料。</p>
 <p><img src="/img/shellman_分析/new_struct.png" alt="全局 struct 数组"></p>
-<p>这个全局数组是这次利用的关键之一，从 IDA 上看还可以知道<br>数组起始地址：0x6016C0<br>新增条目时循环256 次检查有没有空位，意味着是个 size = 256 的数组<br>按新增条目的代码来看，结构是<br>struct record {<br>    QWORD is_allocated;<br>    QWORD length;<br>    QWORD malloc_ptr;<br>};</p>
+<p>这个全局数组是这次利用的关键之一，从 IDA 上看还可以知道<br>数组起始地址：0x6016C0<br>新增条目时循环256 次检查有没有空位，意味着是个 size = 256 的数组<br>按新增条目的代码来看，结构是</p>
+<pre><code class="cpp"><span class="keyword">struct</span> record {
+    QWORD is_allocated;
+    QWORD length;
+    QWORD malloc_ptr;
+};
+</code></pre>
 <p><img src="/img/shellman_分析/new_struct2.png" alt="全局 struct 数组"></p>
 <p>正在编辑。。。</p>
 
