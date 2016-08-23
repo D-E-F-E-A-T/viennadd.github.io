@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://dd3.org/"/>
-  <updated>2016-07-21T09:15:20.000Z</updated>
+  <updated>2016-08-23T13:50:20.000Z</updated>
   <id>http://dd3.org/</id>
   
   <author>
@@ -14,6 +14,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>这样理解 Python 闭包</title>
+    <link href="http://dd3.org/2016/08/23/%E8%BF%99%E6%A0%B7%E7%90%86%E8%A7%A3-Python-%E9%97%AD%E5%8C%85/"/>
+    <id>http://dd3.org/2016/08/23/这样理解-Python-闭包/</id>
+    <published>2016-08-23T13:02:36.000Z</published>
+    <updated>2016-08-23T13:50:20.000Z</updated>
+    
+    <content type="html">&lt;p&gt;看了 &lt;a href=&quot;http://python.jobbole.com/81683/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;12 步轻松搞定 python 装饰器&lt;/a&gt; 里的描述后，对『closure 是上下文』有了些形象的理解，一些应用了 closure 的实践可以参考文章里的一些例子，例如函数参数定制生成，装饰器功能等&lt;/p&gt;
+&lt;figure class=&quot;highlight py&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;g_var = &lt;span class=&quot;number&quot;&gt;20&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;outer&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    loc_var = &lt;span class=&quot;number&quot;&gt;30&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;inner&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        print(&lt;span class=&quot;string&quot;&gt;&#39;I can access g_var: %s, loc_var: %s&#39;&lt;/span&gt; % (g_var, loc_var))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; inner&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;in_fun = outer()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 内层使用到的[外层函数的本地变量]会加入到 func 对象的 __closure__ tuple 里面&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(in_fun.__closure__)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 全局变量不包含在 closure tuple，并不是副本&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;g_var = &lt;span class=&quot;number&quot;&gt;5000&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 效果就是 in_fun 本身函数内的代码，加上 __closure__ 里的上下文副本实现了 closure 功能&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;in_fun()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 也就是说 __closure__ tuple 包含一个 cell 元素，cell 装有外层的 loc_var，值是 30&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(&lt;span class=&quot;string&quot;&gt;&#39;There is %d cell inside&#39;&lt;/span&gt; % len(in_fun.__closure__))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(&lt;span class=&quot;string&quot;&gt;&#39;This cell contain %d&#39;&lt;/span&gt; % in_fun.__closure__[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;].cell_contents)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;看了 &lt;a href=&quot;http://python.jobbole.com/81683/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;12 步轻松搞定 python 装饰器&lt;/a&gt; 里的描述后，对『closure 是上下文』有了些形象的理解，一些应用了 
+    
+    </summary>
+    
+      <category term="Tech Notes" scheme="http://dd3.org/categories/Tech-Notes/"/>
+    
+    
+      <category term="Python" scheme="http://dd3.org/tags/Python/"/>
+    
+      <category term="closure" scheme="http://dd3.org/tags/closure/"/>
+    
+  </entry>
   
   <entry>
     <title>shellman 一个 Linux 堆溢出利用例题的分析</title>
@@ -54,7 +80,7 @@
 &lt;p&gt;至此我们可以控制关键的全局数组的内容，达至任意地址读写。&lt;/p&gt;
 &lt;h4 id=&quot;替换_free_的地址变成_system&quot;&gt;替换 free 的地址变成 system&lt;/h4&gt;&lt;p&gt;从 IDA 或别的工具可得 free 的 GOT 地址在 0x601600, 程序跑起来后实际 free 函数地址会填充进来&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/img/shellman_分析/free_GOT.png&quot; alt=&quot;free 在 GOT 上的地址&quot;&gt;&lt;/p&gt;
-&lt;p&gt;用 gdb 把程序跑起来后，用断点获取 system 地址&lt;br&gt;gdb-peda$ x 0x601600&lt;br&gt;0x601600 &lt;a href=&quot;&amp;#x6d;&amp;#97;&amp;#x69;&amp;#108;&amp;#x74;&amp;#111;&amp;#58;&amp;#x66;&amp;#x72;&amp;#101;&amp;#101;&amp;#x40;&amp;#103;&amp;#x6f;&amp;#x74;&amp;#46;&amp;#x70;&amp;#108;&amp;#x74;&quot;&gt;&amp;#x66;&amp;#x72;&amp;#101;&amp;#101;&amp;#x40;&amp;#103;&amp;#x6f;&amp;#x74;&amp;#46;&amp;#x70;&amp;#108;&amp;#x74;&lt;/a&gt;:    0x00007ffff7a91a70&lt;br&gt;gdb-peda$ b system&lt;br&gt;Breakpoint 3 at 0x7ffff7a53380&lt;/p&gt;
+&lt;p&gt;用 gdb 把程序跑起来后，用断点获取 system 地址&lt;br&gt;gdb-peda$ x 0x601600&lt;br&gt;0x601600 &lt;a href=&quot;&amp;#109;&amp;#x61;&amp;#x69;&amp;#108;&amp;#x74;&amp;#x6f;&amp;#58;&amp;#102;&amp;#x72;&amp;#101;&amp;#101;&amp;#x40;&amp;#x67;&amp;#111;&amp;#116;&amp;#x2e;&amp;#x70;&amp;#108;&amp;#116;&quot;&gt;&amp;#102;&amp;#x72;&amp;#101;&amp;#101;&amp;#x40;&amp;#x67;&amp;#111;&amp;#116;&amp;#x2e;&amp;#x70;&amp;#108;&amp;#116;&lt;/a&gt;:    0x00007ffff7a91a70&lt;br&gt;gdb-peda$ b system&lt;br&gt;Breakpoint 3 at 0x7ffff7a53380&lt;/p&gt;
 &lt;p&gt;同一个libc 两个函数的差值是一样的&lt;/p&gt;
 &lt;p&gt;&gt;&amp;gt;&amp;gt; hex(0x00007ffff7a91a70 - 0x7ffff7a53380)&lt;br&gt;‘0x3e6f0’&lt;/p&gt;
 &lt;p&gt;利用任意地址读写（更改数组项目的 ptr 指向，再 list 出内容或编辑回去 ），可以读出 free@GOT 的地址值，然后利用和 system 的差值固定这一特性计算 system 地址，再写回去覆盖 free 的函数地址值，至此完成函数地址替换。&lt;/p&gt;

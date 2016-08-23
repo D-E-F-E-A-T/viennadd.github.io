@@ -3,17 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>风吹雪</title>
+  <title>这样理解 Python 闭包 | 风吹雪</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="各种生活,技术文章">
-<meta property="og:type" content="website">
-<meta property="og:title" content="风吹雪">
-<meta property="og:url" content="http://dd3.org/index.html">
+  <meta name="description" content="看了 12 步轻松搞定 python 装饰器 里的描述后，对『closure 是上下文』有了些形象的理解，一些应用了 closure 的实践可以参考文章里的一些例子，例如函数参数定制生成，装饰器功能等
+g_var = 20def outer():    loc_var = 30    def inner():        print(&apos;I can access g_var: %s, loc_va">
+<meta property="og:type" content="article">
+<meta property="og:title" content="这样理解 Python 闭包">
+<meta property="og:url" content="http://dd3.org/2016/08/23/这样理解-Python-闭包/index.html">
 <meta property="og:site_name" content="风吹雪">
-<meta property="og:description" content="各种生活,技术文章">
+<meta property="og:description" content="看了 12 步轻松搞定 python 装饰器 里的描述后，对『closure 是上下文』有了些形象的理解，一些应用了 closure 的实践可以参考文章里的一些例子，例如函数参数定制生成，装饰器功能等
+g_var = 20def outer():    loc_var = 30    def inner():        print(&apos;I can access g_var: %s, loc_va">
+<meta property="og:updated_time" content="2016-08-23T13:50:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="风吹雪">
-<meta name="twitter:description" content="各种生活,技术文章">
+<meta name="twitter:title" content="这样理解 Python 闭包">
+<meta name="twitter:description" content="看了 12 步轻松搞定 python 装饰器 里的描述后，对『closure 是上下文』有了些形象的理解，一些应用了 closure 的实践可以参考文章里的一些例子，例如函数参数定制生成，装饰器功能等
+g_var = 20def outer():    loc_var = 30    def inner():        print(&apos;I can access g_var: %s, loc_va">
   
   
     <link rel="icon" href="favicon.png">
@@ -128,8 +132,7 @@ ga('send', 'pageview');
 </aside>
 
       
-      <section id="main">
-      <article id="post-这样理解-Python-闭包" class="article article-type-post" itemscope itemprop="blogPost">
+      <section id="main"><article id="post-这样理解-Python-闭包" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -137,8 +140,8 @@ ga('send', 'pageview');
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/23/这样理解-Python-闭包/">这样理解 Python 闭包</a>
+    <h1 class="article-title" itemprop="name">
+      这样理解 Python 闭包
     </h1>
   
 
@@ -180,317 +183,29 @@ ga('send', 'pageview');
     </footer>
   </div>
   
-</article>
-
-
-
     
-      <article id="post-shellman-一个-Linux-堆溢出利用例题的分析" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-    
-      <header class="article-header">
-        
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/21/shellman-一个-Linux-堆溢出利用例题的分析/">shellman 一个 Linux 堆溢出利用例题的分析</a>
-    </h1>
   
-
-        <div class="article-meta">
-          
-  <div class="article-date">
-    <i class="fa fa-calendar"></i>
-    <a href="/2016/07/21/shellman-一个-Linux-堆溢出利用例题的分析/">
-      <time datetime="2016-07-21T08:43:00.000Z" itemprop="datePublished">2016-07-21</time>
+    <a href="/2016/07/21/shellman-一个-Linux-堆溢出利用例题的分析/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">shellman 一个 Linux 堆溢出利用例题的分析</div>
     </a>
-  </div>
+  
+</nav>
 
 
-          
-  <div class="article-category">
-  	<i class="fa fa-folder"></i>
-    <a class="article-category-link" href="/categories/Tech-Notes/">Tech Notes</a>
-  </div>
-
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="ALARM_signal_自动退出程序">ALARM signal 自动退出程序</h2><p>首先把玩一下，发现有个 alarm 事件令程序在一分钟后退出，这里在二进制修改一下时间值去掉这个小玩意，并不会影响后续堆溢出的分析。</p>
-<p>时间值在 main 函数上作为立即数传给 alarm，用 IDA 或别的反汇编工具可以看到<br>一时间没有好用的二进制编辑，发现用 vi 也非常方便<br><a href="https://www.zhihu.com/question/22281280/answer/34778466">https://www.zhihu.com/question/22281280/answer/34778466</a></p>
-<p><img src="/img/shellman_分析/alarm.png" alt="ALARM signal 时长"></p>
-<p>之后的动态分析会用这个修改过的 shellman_noalarm 就不会一分钟后退出，看了网上一些介绍 gdb 可以屏蔽 ALARM signal， 也是可行方法吧。</p>
-        
-          <p class="article-more-link">
-            <a href="/2016/07/21/shellman-一个-Linux-堆溢出利用例题的分析/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://dd3.org/2016/07/21/shellman-一个-Linux-堆溢出利用例题的分析/" data-id="cis7j4jkx001bx6mlj50fnjs1" class="article-share-link">Share</a>
-      
-        <a href="http://dd3.org/2016/07/21/shellman-一个-Linux-堆溢出利用例题的分析/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
 
 
-
-    
-      <article id="post-理解-TCP-的三次握手、四次挥手" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/27/理解-TCP-的三次握手、四次挥手/">理解 TCP 的三次握手、四次挥手</a>
-    </h1>
-  
-
-        <div class="article-meta">
-          
-  <div class="article-date">
-    <i class="fa fa-calendar"></i>
-    <a href="/2016/06/27/理解-TCP-的三次握手、四次挥手/">
-      <time datetime="2016-06-27T03:11:03.000Z" itemprop="datePublished">2016-06-27</time>
-    </a>
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   </div>
+</section>
 
-
-          
-  <div class="article-category">
-  	<i class="fa fa-folder"></i>
-    <a class="article-category-link" href="/categories/Tech-Notes/">Tech Notes</a>
-  </div>
-
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="三次握手是这样">三次握手是这样</h3><p>第一次（客户端 to 服务端）：我想建立连接，你听到吗？<br>如果服务端收到第一次握手的请求后，则可以确认：[客户端 to 服务端] 是畅通的。<br>客户端还不知道任何是否畅通的情况</p>
-<p>第二次（服务端 to 客户端）：我收到你的请求了，可以建立连接啊，你听得到吗？<br>此时，服务端可以确认的事情是：[客户端 to 服务端] 是畅通的。<br>客户端如果收到第二次握手的服务端回复后，则可以确认 [客户端 to 服务端], [服务端 to 客户端] 都是畅通的。</p>
-<p>第三次（客户端 to 服务端）：我听到你说可以建立连接了。<br>上面已经确认了[客户端 to 服务端] 是畅通的，这个包不会有问题。<br>此时如果服务端收到确认后，知道的事情有：[客户端 to 服务端]，[服务端 to 客户端] 都是畅通，<br>而客户端也知道 [客户端 to 服务端], [服务端 to 客户端] 都是畅通。</p>
-<p>好的，三次握手确认了双方畅通。</p>
-        
-          <p class="article-more-link">
-            <a href="/2016/06/27/理解-TCP-的三次握手、四次挥手/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://dd3.org/2016/06/27/理解-TCP-的三次握手、四次挥手/" data-id="cis7j4jkl000tx6ml2csrscql" class="article-share-link">Share</a>
-      
-        <a href="http://dd3.org/2016/06/27/理解-TCP-的三次握手、四次挥手/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-    
-      <article id="post-山寨了个贪吃蛇" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/22/山寨了个贪吃蛇/">山寨了个贪吃蛇</a>
-    </h1>
-  
-
-        <div class="article-meta">
-          
-  <div class="article-date">
-    <i class="fa fa-calendar"></i>
-    <a href="/2016/06/22/山寨了个贪吃蛇/">
-      <time datetime="2016-06-22T07:26:29.000Z" itemprop="datePublished">2016-06-22</time>
-    </a>
-  </div>
-
-
-          
-  <div class="article-category">
-  	<i class="fa fa-folder"></i>
-    <a class="article-category-link" href="/categories/Tech-Notes/">Tech Notes</a>
-  </div>
-
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-                
-        <p>看到知乎一个条问答：<a href="https://www.zhihu.com/question/36280350" target="_blank" rel="external">计算机应届生简历中，「贪吃蛇，俄罗斯方块」等小项目有必要写到简历中吗？</a></p>
-<p>就试做了个贪吃蛇</p>
-<p><a href="https://gist.github.com/viennadd/a67047dd21cf74fe2d034cd44a43fa31" target="_blank" rel="external">https://gist.github.com/viennadd/a67047dd21cf74fe2d034cd44a43fa31</a></p>
-<p>刚开搞的时候发现命令行的按键处理都是平台相关的，就用 getchar 代替，需要按回车，</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://dd3.org/2016/06/22/山寨了个贪吃蛇/" data-id="cis7j4jkv0017x6mlol7p4c4w" class="article-share-link">Share</a>
-      
-        <a href="http://dd3.org/2016/06/22/山寨了个贪吃蛇/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-    
-      <article id="post-Ubuntu-对-Retina-Display-的支持" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/24/Ubuntu-对-Retina-Display-的支持/">Ubuntu 对 Retina Display 的支持</a>
-    </h1>
-  
-
-        <div class="article-meta">
-          
-  <div class="article-date">
-    <i class="fa fa-calendar"></i>
-    <a href="/2016/04/24/Ubuntu-对-Retina-Display-的支持/">
-      <time datetime="2016-04-24T05:54:00.000Z" itemprop="datePublished">2016-04-24</time>
-    </a>
-  </div>
-
-
-          
-  <div class="article-category">
-  	<i class="fa fa-folder"></i>
-    <a class="article-category-link" href="/categories/Tech-Notes/">Tech Notes</a>
-  </div>
-
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-                
-        <p>VM 装 Ubuntu 显示效果朦朦的, 如果把 VM 的 retina 支持勾上又会导致整体 icon 缩小, 原来在这个情况下调一下 System Settings 的 scale, 效果就会合适。</p>
-<p>步骤如下<br><a href="http://askubuntu.com/questions/472262/adapt-ubuntu-to-a-high-dpi-resolution-screen?lq=1" target="_blank" rel="external">http://askubuntu.com/questions/472262/adapt-ubuntu-to-a-high-dpi-resolution-screen?lq=1</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://dd3.org/2016/04/24/Ubuntu-对-Retina-Display-的支持/" data-id="cis7j4jkz001dx6ml7lxrp2z5" class="article-share-link">Share</a>
-      
-        <a href="http://dd3.org/2016/04/24/Ubuntu-对-Retina-Display-的支持/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-    
-      <article id="post-Leetcode-Median-of-Two-Sorted-Arrays" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/07/Leetcode-Median-of-Two-Sorted-Arrays/">Leetcode - Median of Two Sorted Arrays</a>
-    </h1>
-  
-
-        <div class="article-meta">
-          
-  <div class="article-date">
-    <i class="fa fa-calendar"></i>
-    <a href="/2016/04/07/Leetcode-Median-of-Two-Sorted-Arrays/">
-      <time datetime="2016-04-07T15:19:05.000Z" itemprop="datePublished">2016-04-07</time>
-    </a>
-  </div>
-
-
-          
-  <div class="article-category">
-  	<i class="fa fa-folder"></i>
-    <a class="article-category-link" href="/categories/刷题/">刷题</a>
-  </div>
-
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>对这题想到一个方法，既然是两个 Sorted Arrays, 用 Merge Sort 类似的归并方法组合两个数组就可以了, 根据总长度的奇偶抽取第 N 大的数值出来就完成啦。但这样做的话运行时间是 O(m+n / 2), 题目要求 O(log(m+n))</p>
-<p>第一个想法就是二分, 参考了几个博文之后, 先准备一个 Kth 函数用于寻找两个 sorted array 的第 K 小的数, 然后中位数就很容易了, 反而一开始追求二分中位数似乎会有不少 corner cases</p>
-<p>那先把问题换成两个有序数组的第 K 小的数值</p>
-<p>有以下步骤</p>
-<ul>
-<li>有序 vector v1 和 v2, 求第 K 小</li>
-<li>二分思想是每次从 v1 和 v2 排除一半的可选元素</li>
-<li>有 x, y &gt; 0 &amp;&amp; x + y == k, </li>
-<li>x, y 的取值也是有讲究, x = len(v1) / (len(v1) + len(v2)) * k, 这个意思是 len(v1) 占总 size 的百分比, 再乘以 k 的话就可以确保 x 的取值不会超出 v1 的数组范围, 这里简化了, 实际代码需要注意一些边界问题</li>
-<li>如果 <strong>v1[x] &lt; v2[y]</strong>, 则 v1[0 .. x] 的元素都不可能是第 K 小, 他们都肯定比第 K 的数值要小了, 我们则可以排除掉这些数值, </li>
-<li><strong>v1[x] &gt; v2[y]</strong> 的话都是同样的思想</li>
-<li>调整 v1, v2 的长度, 下表值, k 的值等, 然后重复这些取值然后比较的步骤,</li>
-<li>调整完 size 和 下标后, 检查一下 k 是否下降到 1, 第 1 小的值是 min(v1[0], v2[0]), 还有如果其中一个 vector 的 size 下降到 0, 那可以直接返回另一个 vector 的第 k 个值</li>
-<li>如果是 <strong>v1[x] == v2[y]</strong> 的话, x + y == k, v1[x] == v2[y], 那这个数值已经是第 K 小了, 这里是一个 base case</li>
-</ul>
-<p>大家可以 Leetcode 测试一下自己的代码 <a href="https://leetcode.com/problems/median-of-two-sorted-arrays/">https://leetcode.com/problems/median-of-two-sorted-arrays/</a></p>
-<p>下面是我提交的代码<br>
-        
-          <p class="article-more-link">
-            <a href="/2016/04/07/Leetcode-Median-of-Two-Sorted-Arrays/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://dd3.org/2016/04/07/Leetcode-Median-of-Two-Sorted-Arrays/" data-id="cis7j4jk20000x6mlq56heooi" class="article-share-link">Share</a>
-      
-        <a href="http://dd3.org/2016/04/07/Leetcode-Median-of-Two-Sorted-Arrays/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/">algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-    
-      <nav id="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-      </nav>
-    </section>
+</section>
       
         <aside id="sidebar">
   
@@ -653,7 +368,7 @@ ga('send', 'pageview');
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
