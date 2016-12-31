@@ -22,6 +22,7 @@
 <meta name="twitter:description" content="唉, 不熟练连这样的题都不会入手。。
 题目大概是这样 http://icpc.ahu.edu.cn/OJ/ContestProblem.aspx?cid=16&amp;amp;id=410参考了 http://www.cnblogs.com/kaima/p/4773908.html
 外部的 while 循环检查 number 是否到 N * N, 如果 N 为偶数则可以在这里停下, (最后四个位置刚好填完">
+<meta name="twitter:image" content="http://dd3.org/img/打印蛇形数组/snake.jpg">
   
   
     <link rel="icon" href="favicon.png">
@@ -31,8 +32,8 @@
  <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
 
 
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
   
 <!-- Google Analytics -->
 <script type="text/javascript">
@@ -110,7 +111,7 @@ ga('send', 'pageview');
     </div>
     <div class="article-info profile-block">
       <div class="article-info-block">
-        14
+        15
         <span>posts</span>
       </div>
       <div class="article-info-block">
@@ -177,12 +178,12 @@ ga('send', 'pageview');
 <p>然后开始填充数组, 调节 x y 的坐标值填充一圈蛇形, 一圈后 x y 回归原点<br>缩小 size 变量<br>x+1, y+1 跳入内圈重复以上步骤又填充一圈, 直至跳出 while 循环</p>
 <p><img src="/img/打印蛇形数组/snake.jpg" alt="x y 走向"></p>
 <p>代码如下<br><a id="more"></a></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> SIZE = <span class="number">110</span>;</span><br><span class="line"><span class="keyword">int</span> A[SIZE][SIZE];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">0</span>, y = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> size = n - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> number = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> dest = n * n;</span><br><span class="line">    <span class="keyword">while</span> (number &lt; dest)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (number == dest - <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            A[x][y] = number;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* to left, down, right, up */</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i, ++x)</span><br><span class="line">        &#123;</span><br><span class="line">            A[x][y] = number;</span><br><span class="line">            number++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i, ++y)</span><br><span class="line">        &#123;</span><br><span class="line">            A[x][y] = number;</span><br><span class="line">            number++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i, x--)</span><br><span class="line">        &#123;</span><br><span class="line">            A[x][y] = number;</span><br><span class="line">            number++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i, y--)</span><br><span class="line">        &#123;</span><br><span class="line">            A[x][y] = number;</span><br><span class="line">            number++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        size -= <span class="number">2</span>;</span><br><span class="line">        x++;</span><br><span class="line">        y++;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> y = <span class="number">0</span>; y &lt; n; ++y)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x &lt; n; ++x)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; A[x][y] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> SIZE = <span class="number">110</span>;</div><div class="line"><span class="keyword">int</span> A[SIZE][SIZE];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> n;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; n;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> x = <span class="number">0</span>, y = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> size = n - <span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span> number = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> dest = n * n;</div><div class="line">    <span class="keyword">while</span> (number &lt; dest)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (number == dest - <span class="number">1</span>)</div><div class="line">        &#123;</div><div class="line">            A[x][y] = number;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">/* to left, down, right, up */</span></div><div class="line"></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i, ++x)</div><div class="line">        &#123;</div><div class="line">            A[x][y] = number;</div><div class="line">            number++;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i, ++y)</div><div class="line">        &#123;</div><div class="line">            A[x][y] = number;</div><div class="line">            number++;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i, x--)</div><div class="line">        &#123;</div><div class="line">            A[x][y] = number;</div><div class="line">            number++;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i, y--)</div><div class="line">        &#123;</div><div class="line">            A[x][y] = number;</div><div class="line">            number++;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        size -= <span class="number">2</span>;</div><div class="line">        x++;</div><div class="line">        y++;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> y = <span class="number">0</span>; y &lt; n; ++y)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x &lt; n; ++x)</div><div class="line">        &#123;</div><div class="line">            <span class="built_in">cout</span> &lt;&lt; A[x][y] &lt;&lt; <span class="string">" "</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dd3.org/2016/04/05/打印蛇形数组/" data-id="civou78xk001598mli4ha2x3e" class="article-share-link">Share</a>
+      <a data-url="http://dd3.org/2016/04/05/打印蛇形数组/" data-id="cixd7yndf000dovml9e0fdbmo" class="article-share-link">Share</a>
       
         <a href="http://dd3.org/2016/04/05/打印蛇形数组/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -230,6 +231,23 @@ ga('send', 'pageview');
     <h3 class="widget-title">recents</h3>
     <div class="widget">
       <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2016/12/31/重新对博客启用-HTTPS/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2016/12/31/重新对博客启用-HTTPS/" class="title">重新对博客启用 HTTPS</a></p>
+              <p class="item-date"><time datetime="2016-12-31T12:30:57.000Z" itemprop="datePublished">2016-12-31</time></p>
+            </div>
+          </li>
         
           <li>
             
@@ -300,23 +318,6 @@ ga('send', 'pageview');
             </div>
           </li>
         
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2016/06/22/山寨了个贪吃蛇/" class="thumbnail">
-  
-    <span class="thumbnail-image thumbnail-none"></span>
-  
-</a>
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category"><a class="article-category-link" href="/categories/Tech-Notes/">Tech Notes</a></p>
-              <p class="item-title"><a href="/2016/06/22/山寨了个贪吃蛇/" class="title">山寨了个贪吃蛇</a></p>
-              <p class="item-date"><time datetime="2016-06-22T07:26:29.000Z" itemprop="datePublished">2016-06-22</time></p>
-            </div>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -326,7 +327,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -338,23 +339,23 @@ ga('send', 'pageview');
       <ul>
         
           <li>
-            <a href="https://twd2.me">twd2 的博客</a>
+            <a href="https://twd2.me">twd2</a>
           </li>
         
           <li>
-            <a href="http://44670.org/">气泡熊的博客</a>
+            <a href="http://44670.org/">气泡熊</a>
           </li>
         
           <li>
-            <a href="http://newbiecoder.0ginr.com/blog/">炉子的博客</a>
+            <a href="http://newbiecoder.0ginr.com/blog/">炉子</a>
           </li>
         
           <li>
-            <a href="http://xiaoxia.org/">小虾的博客</a>
+            <a href="http://xiaoxia.org/">小虾</a>
           </li>
         
           <li>
-            <a href="http://chichou.0ginr.com/blog/">CC 的博客</a>
+            <a href="http://chichou.0ginr.com/blog/">CC</a>
           </li>
         
       </ul>
@@ -396,12 +397,17 @@ ga('send', 'pageview');
 
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
 
   </div>
 </body>
+<script type="text/javascript">
+    var host = "yoursite.com";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+	window.location.protocol = "https";
+</script>
 </html>

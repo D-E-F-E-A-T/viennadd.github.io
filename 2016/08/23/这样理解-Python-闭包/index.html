@@ -27,8 +27,8 @@ g_var = 20def outer():    loc_var = 30    def inner():        print(&apos;I can 
  <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
 
 
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
   
 <!-- Google Analytics -->
 <script type="text/javascript">
@@ -106,7 +106,7 @@ ga('send', 'pageview');
     </div>
     <div class="article-info profile-block">
       <div class="article-info-block">
-        14
+        15
         <span>posts</span>
       </div>
       <div class="article-info-block">
@@ -168,12 +168,12 @@ ga('send', 'pageview');
       
                 
         <p>看了 <a href="http://python.jobbole.com/81683/" target="_blank" rel="external">12 步轻松搞定 python 装饰器</a> 里的描述后，对『closure 是上下文』有了些形象的理解，一些应用了 closure 的实践可以参考文章里的一些例子，例如函数参数定制生成，装饰器功能等</p>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">g_var = <span class="number">20</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">outer</span><span class="params">()</span>:</span></span><br><span class="line">    loc_var = <span class="number">30</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inner</span><span class="params">()</span>:</span></span><br><span class="line">        print(<span class="string">'I can access g_var: %s, loc_var: %s'</span> % (g_var, loc_var))</span><br><span class="line">    <span class="keyword">return</span> inner</span><br><span class="line"></span><br><span class="line">in_fun = outer()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 内层使用到的[外层函数的本地变量]会加入到 func 对象的 __closure__ tuple 里面</span></span><br><span class="line">print(in_fun.__closure__)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 全局变量不包含在 closure tuple，并不是副本</span></span><br><span class="line">g_var = <span class="number">5000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 效果就是 in_fun 本身函数内的代码，加上 __closure__ 里的上下文副本实现了 closure 功能</span></span><br><span class="line">in_fun()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 也就是说 __closure__ tuple 包含一个 cell 元素，cell 装有外层的 loc_var，值是 30</span></span><br><span class="line">print(<span class="string">'There is %d cell inside'</span> % len(in_fun.__closure__))</span><br><span class="line">print(<span class="string">'This cell contain %d'</span> % in_fun.__closure__[<span class="number">0</span>].cell_contents)</span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="code"><pre><div class="line"></div><div class="line">g_var = <span class="number">20</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">outer</span><span class="params">()</span>:</span></div><div class="line">    loc_var = <span class="number">30</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inner</span><span class="params">()</span>:</span></div><div class="line">        print(<span class="string">'I can access g_var: %s, loc_var: %s'</span> % (g_var, loc_var))</div><div class="line">    <span class="keyword">return</span> inner</div><div class="line"></div><div class="line">in_fun = outer()</div><div class="line"></div><div class="line"><span class="comment"># 内层使用到的[外层函数的本地变量]会加入到 func 对象的 __closure__ tuple 里面</span></div><div class="line">print(in_fun.__closure__)</div><div class="line"></div><div class="line"><span class="comment"># 全局变量不包含在 closure tuple，并不是副本</span></div><div class="line">g_var = <span class="number">5000</span></div><div class="line"></div><div class="line"><span class="comment"># 效果就是 in_fun 本身函数内的代码，加上 __closure__ 里的上下文副本实现了 closure 功能</span></div><div class="line">in_fun()</div><div class="line"></div><div class="line"><span class="comment"># 也就是说 __closure__ tuple 包含一个 cell 元素，cell 装有外层的 loc_var，值是 30</span></div><div class="line">print(<span class="string">'There is %d cell inside'</span> % len(in_fun.__closure__))</div><div class="line">print(<span class="string">'This cell contain %d'</span> % in_fun.__closure__[<span class="number">0</span>].cell_contents)</div></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dd3.org/2016/08/23/这样理解-Python-闭包/" data-id="civou78x4000n98ml86zz43sv" class="article-share-link">Share</a>
+      <a data-url="http://dd3.org/2016/08/23/这样理解-Python-闭包/" data-id="cixd7yne70010ovmlkg8owjx6" class="article-share-link">Share</a>
       
         <a href="http://dd3.org/2016/08/23/这样理解-Python-闭包/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -223,6 +223,23 @@ ga('send', 'pageview');
     <h3 class="widget-title">recents</h3>
     <div class="widget">
       <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2016/12/31/重新对博客启用-HTTPS/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2016/12/31/重新对博客启用-HTTPS/" class="title">重新对博客启用 HTTPS</a></p>
+              <p class="item-date"><time datetime="2016-12-31T12:30:57.000Z" itemprop="datePublished">2016-12-31</time></p>
+            </div>
+          </li>
         
           <li>
             
@@ -293,23 +310,6 @@ ga('send', 'pageview');
             </div>
           </li>
         
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2016/06/22/山寨了个贪吃蛇/" class="thumbnail">
-  
-    <span class="thumbnail-image thumbnail-none"></span>
-  
-</a>
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category"><a class="article-category-link" href="/categories/Tech-Notes/">Tech Notes</a></p>
-              <p class="item-title"><a href="/2016/06/22/山寨了个贪吃蛇/" class="title">山寨了个贪吃蛇</a></p>
-              <p class="item-date"><time datetime="2016-06-22T07:26:29.000Z" itemprop="datePublished">2016-06-22</time></p>
-            </div>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -319,7 +319,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -331,23 +331,23 @@ ga('send', 'pageview');
       <ul>
         
           <li>
-            <a href="https://twd2.me">twd2 的博客</a>
+            <a href="https://twd2.me">twd2</a>
           </li>
         
           <li>
-            <a href="http://44670.org/">气泡熊的博客</a>
+            <a href="http://44670.org/">气泡熊</a>
           </li>
         
           <li>
-            <a href="http://newbiecoder.0ginr.com/blog/">炉子的博客</a>
+            <a href="http://newbiecoder.0ginr.com/blog/">炉子</a>
           </li>
         
           <li>
-            <a href="http://xiaoxia.org/">小虾的博客</a>
+            <a href="http://xiaoxia.org/">小虾</a>
           </li>
         
           <li>
-            <a href="http://chichou.0ginr.com/blog/">CC 的博客</a>
+            <a href="http://chichou.0ginr.com/blog/">CC</a>
           </li>
         
       </ul>
@@ -389,12 +389,17 @@ ga('send', 'pageview');
 
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
 
   </div>
 </body>
+<script type="text/javascript">
+    var host = "yoursite.com";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+	window.location.protocol = "https";
+</script>
 </html>

@@ -27,8 +27,8 @@
  <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
 
 
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
   
 <!-- Google Analytics -->
 <script type="text/javascript">
@@ -106,7 +106,7 @@ ga('send', 'pageview');
     </div>
     <div class="article-info profile-block">
       <div class="article-info-block">
-        14
+        15
         <span>posts</span>
       </div>
       <div class="article-info-block">
@@ -180,7 +180,7 @@ ga('send', 'pageview');
 <li>累加后字典的值指定了元素排序后的位置，反向遍历待排序的A, 结合指定了元素位置的字典C 则可生成有序结果, 而反向遍历的元素会放在更后的位置, 这特性确保这是稳定排序</li>
 </ol>
 <p>C 语言例子</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PrintArray</span><span class="params">(<span class="keyword">int</span> *A, <span class="keyword">int</span> n)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\t"</span>, A[i]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CountingSort</span><span class="params">(<span class="keyword">int</span> *A, <span class="keyword">int</span> n, <span class="keyword">int</span> *C, <span class="keyword">int</span> m, <span class="keyword">int</span> *Order)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Original Data: \n"</span>);</span><br><span class="line">    PrintArray(A, n);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// initialize Dict</span></span><br><span class="line">    <span class="comment">// memset(C, 0, m * sizeof(m)); 这行居然导致代码着色失效, 不用括号包着 m 则问题解决，着实诡异。</span></span><br><span class="line">    <span class="built_in">memset</span>(C, <span class="number">0</span>, m * <span class="keyword">sizeof</span> m);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// counting element of A</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">        C[A[i]]++;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Dict: Before Accumulate\n"</span>);</span><br><span class="line">    PrintArray(C, m);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// scan C, accumulate,</span></span><br><span class="line">    <span class="comment">// 累加后, C 字典里的值就是 元素有序后的位置, 因为每次取得和占用位置后应该减一, 使用字典C 逆遍历A 就可以保持稳定而有序</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; m; ++i)</span><br><span class="line">        C[i] += C[i - <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Dict: After Accumulate\n"</span>);</span><br><span class="line">    PrintArray(C, m);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// reverse filling result, stable sort</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">    &#123;</span><br><span class="line">        Order[C[A[i]]] = A[i]; <span class="comment">// 根据字典 C 得知 A[i] 的位置（累加后的C 的值x : 前面有x个值比我小 )</span></span><br><span class="line">        C[A[i]]--;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Sorted Array:\n"</span>);</span><br><span class="line">    PrintArray(Order, n);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> K = <span class="number">10</span>; <span class="comment">// maximum in range, size of C</span></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">20</span>; <span class="comment">// size of A</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> A[N] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> C[K + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span> Order[N]; <span class="comment">// result</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; ++i)</span><br><span class="line">        A[i] = rand() % K;</span><br><span class="line"></span><br><span class="line">    CountingSort(A, N, C, K, Order);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">PrintArray</span><span class="params">(<span class="keyword">int</span> *A, <span class="keyword">int</span> n)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%d\t"</span>, A[i]);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">CountingSort</span><span class="params">(<span class="keyword">int</span> *A, <span class="keyword">int</span> n, <span class="keyword">int</span> *C, <span class="keyword">int</span> m, <span class="keyword">int</span> *Order)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Original Data: \n"</span>);</div><div class="line">    PrintArray(A, n);</div><div class="line"></div><div class="line">    <span class="comment">// initialize Dict</span></div><div class="line">    <span class="comment">// memset(C, 0, m * sizeof(m)); 这行居然导致代码着色失效, 不用括号包着 m 则问题解决，着实诡异。</span></div><div class="line">    <span class="built_in">memset</span>(C, <span class="number">0</span>, m * <span class="keyword">sizeof</span> m);</div><div class="line"></div><div class="line">    <span class="comment">// counting element of A</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</div><div class="line">        C[A[i]]++;</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Dict: Before Accumulate\n"</span>);</div><div class="line">    PrintArray(C, m);</div><div class="line"></div><div class="line">    <span class="comment">// scan C, accumulate,</span></div><div class="line">    <span class="comment">// 累加后, C 字典里的值就是 元素有序后的位置, 因为每次取得和占用位置后应该减一, 使用字典C 逆遍历A 就可以保持稳定而有序</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; m; ++i)</div><div class="line">        C[i] += C[i - <span class="number">1</span>];</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Dict: After Accumulate\n"</span>);</div><div class="line">    PrintArray(C, m);</div><div class="line"></div><div class="line">    <span class="comment">// reverse filling result, stable sort</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</div><div class="line">    &#123;</div><div class="line">        Order[C[A[i]]] = A[i]; <span class="comment">// 根据字典 C 得知 A[i] 的位置（累加后的C 的值x : 前面有x个值比我小 )</span></div><div class="line">        C[A[i]]--;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Sorted Array:\n"</span>);</div><div class="line">    PrintArray(Order, n);</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">const</span> <span class="keyword">int</span> K = <span class="number">10</span>; <span class="comment">// maximum in range, size of C</span></div><div class="line">    <span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">20</span>; <span class="comment">// size of A</span></div><div class="line"></div><div class="line">    <span class="keyword">int</span> A[N] = &#123;<span class="number">0</span>&#125;;</div><div class="line">    <span class="keyword">int</span> C[K + <span class="number">1</span>];</div><div class="line">    <span class="keyword">int</span> Order[N]; <span class="comment">// result</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; ++i)</div><div class="line">        A[i] = rand() % K;</div><div class="line"></div><div class="line">    CountingSort(A, N, C, K, Order);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="桶排序_(Bucket_Sort)">桶排序 (Bucket Sort)</h3><p>观看 <a href="http://www.cs.usfca.edu/~galles/visualization/BucketSort.html" target="_blank" rel="external">BucketSort Visualization</a> 后, 感觉桶排序就像散列表，然后加入了顺序的想法。</p>
 <ol>
 <li>过程与计数排序的部分步骤相近, 建立 Dict 字典用以储存元素的出现情况, Dict 其实可以是线性表或者散列表, 看需求; 而本来在计数排序中的计数步骤这里则类似是散列表的 Chaining</li>
@@ -188,13 +188,13 @@ ga('send', 'pageview');
 </ol>
 <h3 id="基数排序_(Radix_Sort)">基数排序 (Radix Sort)</h3><p>假设是10 进制数<br>主要思想是, 把整数按数位分割, 然后就可以对一列个位数 key 进行稳定排序, from least significant to most significant digit.</p>
 <p>一列个位数的排序就当然是使用上面的非基于比较的排序方式啦, 按十进制数来说, 每次计数排序就需要10个坑来计数</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">extract_digit</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> place, <span class="keyword">const</span> <span class="keyword">int</span> base = <span class="number">10</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> i / (<span class="keyword">int</span>)<span class="built_in">pow</span>(base, place) % base;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CountingSort</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;v, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;tmp, <span class="keyword">int</span> place)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> BASE = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> C[BASE] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v.size(); ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> d = extract_digit(v[i], place);</span><br><span class="line">        C[d]++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; BASE; ++i)</span><br><span class="line">        C[i] += C[i - <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = v.size() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> d = extract_digit(v[i], place);</span><br><span class="line">        tmp[C[d] - <span class="number">1</span>] = v[i];</span><br><span class="line">        C[d]--;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    v.swap(tmp);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">RadixSort</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;v, <span class="keyword">int</span> element_max_width = <span class="number">11</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; tmp (v.size());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> place = <span class="number">0</span>; place &lt; element_max_width; ++place)</span><br><span class="line">        CountingSort(v, tmp, place);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">extract_digit</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> place, <span class="keyword">const</span> <span class="keyword">int</span> base = <span class="number">10</span>)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> i / (<span class="keyword">int</span>)<span class="built_in">pow</span>(base, place) % base;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">CountingSort</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;v, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;tmp, <span class="keyword">int</span> place)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">const</span> <span class="keyword">int</span> BASE = <span class="number">10</span>;</div><div class="line">    <span class="keyword">int</span> C[BASE] = &#123;<span class="number">0</span>&#125;;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v.size(); ++i)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">int</span> d = extract_digit(v[i], place);</div><div class="line">        C[d]++;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; BASE; ++i)</div><div class="line">        C[i] += C[i - <span class="number">1</span>];</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = v.size() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">int</span> d = extract_digit(v[i], place);</div><div class="line">        tmp[C[d] - <span class="number">1</span>] = v[i];</div><div class="line">        C[d]--;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    v.swap(tmp);</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">RadixSort</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;v, <span class="keyword">int</span> element_max_width = <span class="number">11</span>)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; tmp (v.size());</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> place = <span class="number">0</span>; place &lt; element_max_width; ++place)</div><div class="line">        CountingSort(v, tmp, place);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dd3.org/2016/03/21/非基于比较排序/" data-id="civou78x1000i98mlh981vtfr" class="article-share-link">Share</a>
+      <a data-url="http://dd3.org/2016/03/21/非基于比较排序/" data-id="cixd7yne4000uovml2c5inr62" class="article-share-link">Share</a>
       
         <a href="http://dd3.org/2016/03/21/非基于比较排序/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -244,6 +244,23 @@ ga('send', 'pageview');
     <h3 class="widget-title">recents</h3>
     <div class="widget">
       <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2016/12/31/重新对博客启用-HTTPS/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2016/12/31/重新对博客启用-HTTPS/" class="title">重新对博客启用 HTTPS</a></p>
+              <p class="item-date"><time datetime="2016-12-31T12:30:57.000Z" itemprop="datePublished">2016-12-31</time></p>
+            </div>
+          </li>
         
           <li>
             
@@ -314,23 +331,6 @@ ga('send', 'pageview');
             </div>
           </li>
         
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2016/06/22/山寨了个贪吃蛇/" class="thumbnail">
-  
-    <span class="thumbnail-image thumbnail-none"></span>
-  
-</a>
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category"><a class="article-category-link" href="/categories/Tech-Notes/">Tech Notes</a></p>
-              <p class="item-title"><a href="/2016/06/22/山寨了个贪吃蛇/" class="title">山寨了个贪吃蛇</a></p>
-              <p class="item-date"><time datetime="2016-06-22T07:26:29.000Z" itemprop="datePublished">2016-06-22</time></p>
-            </div>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -340,7 +340,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -352,23 +352,23 @@ ga('send', 'pageview');
       <ul>
         
           <li>
-            <a href="https://twd2.me">twd2 的博客</a>
+            <a href="https://twd2.me">twd2</a>
           </li>
         
           <li>
-            <a href="http://44670.org/">气泡熊的博客</a>
+            <a href="http://44670.org/">气泡熊</a>
           </li>
         
           <li>
-            <a href="http://newbiecoder.0ginr.com/blog/">炉子的博客</a>
+            <a href="http://newbiecoder.0ginr.com/blog/">炉子</a>
           </li>
         
           <li>
-            <a href="http://xiaoxia.org/">小虾的博客</a>
+            <a href="http://xiaoxia.org/">小虾</a>
           </li>
         
           <li>
-            <a href="http://chichou.0ginr.com/blog/">CC 的博客</a>
+            <a href="http://chichou.0ginr.com/blog/">CC</a>
           </li>
         
       </ul>
@@ -410,12 +410,17 @@ ga('send', 'pageview');
 
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
 
   </div>
 </body>
+<script type="text/javascript">
+    var host = "yoursite.com";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+	window.location.protocol = "https";
+</script>
 </html>
