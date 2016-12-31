@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://dd3.org/"/>
-  <updated>2016-12-31T12:42:13.000Z</updated>
+  <updated>2016-12-31T16:17:25.000Z</updated>
   <id>http://dd3.org/</id>
   
   <author>
@@ -14,6 +14,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2017 Happy New Year! 新年好</title>
+    <link href="http://dd3.org/2017/01/01/2017-Happy-New-Year-%E6%96%B0%E5%B9%B4%E5%A5%BD/"/>
+    <id>http://dd3.org/2017/01/01/2017-Happy-New-Year-新年好/</id>
+    <published>2016-12-31T16:14:42.000Z</published>
+    <updated>2016-12-31T16:17:25.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;回顾_2016&quot;&gt;回顾 2016&lt;/h2&gt;&lt;h2 id=&quot;展望_2017&quot;&gt;展望 2017&lt;/h2&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;回顾_2016&quot;&gt;回顾 2016&lt;/h2&gt;&lt;h2 id=&quot;展望_2017&quot;&gt;展望 2017&lt;/h2&gt;
+    
+    </summary>
+    
+      <category term="生活" scheme="http://dd3.org/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>重新对博客启用 HTTPS</title>
@@ -126,7 +146,7 @@
 &lt;p&gt;至此我们可以控制关键的全局数组的内容，达至任意地址读写。&lt;/p&gt;
 &lt;h4 id=&quot;替换_free_的地址变成_system&quot;&gt;替换 free 的地址变成 system&lt;/h4&gt;&lt;p&gt;从 IDA 或别的工具可得 free 的 GOT 地址在 0x601600, 程序跑起来后实际 free 函数地址会填充进来&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/img/shellman_分析/free_GOT.png&quot; alt=&quot;free 在 GOT 上的地址&quot;&gt;&lt;/p&gt;
-&lt;p&gt;用 gdb 把程序跑起来后，用断点获取 system 地址&lt;br&gt;gdb-peda$ x 0x601600&lt;br&gt;0x601600 &lt;a href=&quot;&amp;#109;&amp;#97;&amp;#105;&amp;#x6c;&amp;#116;&amp;#x6f;&amp;#58;&amp;#x66;&amp;#114;&amp;#x65;&amp;#x65;&amp;#x40;&amp;#x67;&amp;#111;&amp;#x74;&amp;#x2e;&amp;#x70;&amp;#x6c;&amp;#x74;&quot;&gt;&amp;#x66;&amp;#114;&amp;#x65;&amp;#x65;&amp;#x40;&amp;#x67;&amp;#111;&amp;#x74;&amp;#x2e;&amp;#x70;&amp;#x6c;&amp;#x74;&lt;/a&gt;:    0x00007ffff7a91a70&lt;br&gt;gdb-peda$ b system&lt;br&gt;Breakpoint 3 at 0x7ffff7a53380&lt;/p&gt;
+&lt;p&gt;用 gdb 把程序跑起来后，用断点获取 system 地址&lt;br&gt;gdb-peda$ x 0x601600&lt;br&gt;0x601600 &lt;a href=&quot;&amp;#109;&amp;#x61;&amp;#105;&amp;#108;&amp;#x74;&amp;#x6f;&amp;#58;&amp;#102;&amp;#x72;&amp;#101;&amp;#101;&amp;#64;&amp;#x67;&amp;#x6f;&amp;#116;&amp;#x2e;&amp;#x70;&amp;#108;&amp;#116;&quot;&gt;&amp;#102;&amp;#x72;&amp;#101;&amp;#101;&amp;#64;&amp;#x67;&amp;#x6f;&amp;#116;&amp;#x2e;&amp;#x70;&amp;#108;&amp;#116;&lt;/a&gt;:    0x00007ffff7a91a70&lt;br&gt;gdb-peda$ b system&lt;br&gt;Breakpoint 3 at 0x7ffff7a53380&lt;/p&gt;
 &lt;p&gt;同一个libc 两个函数的差值是一样的&lt;/p&gt;
 &lt;p&gt;&gt;&amp;gt;&amp;gt; hex(0x00007ffff7a91a70 - 0x7ffff7a53380)&lt;br&gt;‘0x3e6f0’&lt;/p&gt;
 &lt;p&gt;利用任意地址读写（更改数组项目的 ptr 指向，再 list 出内容或编辑回去 ），可以读出 free@GOT 的地址值，然后利用和 system 的差值固定这一特性计算 system 地址，再写回去覆盖 free 的函数地址值，至此完成函数地址替换。&lt;/p&gt;
