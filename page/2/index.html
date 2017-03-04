@@ -108,11 +108,11 @@ ga('send', 'pageview');
     </div>
     <div class="article-info profile-block">
       <div class="article-info-block">
-        17
+        18
         <span>posts</span>
       </div>
       <div class="article-info-block">
-        12
+        14
         <span>tags</span>
       </div>
     </div>
@@ -135,6 +135,65 @@ ga('send', 'pageview');
 
       
       <section id="main">
+      <article id="post-shellman-一个-Linux-堆溢出利用例题的分析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/21/shellman-一个-Linux-堆溢出利用例题的分析/">shellman 一个 Linux 堆溢出利用例题的分析</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2016/07/21/shellman-一个-Linux-堆溢出利用例题的分析/">
+      <time datetime="2016-07-21T08:43:00.000Z" itemprop="datePublished">2016-07-21</time>
+    </a>
+  </div>
+
+
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Tech-Notes/">Tech Notes</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="ALARM_signal_自动退出程序">ALARM signal 自动退出程序</h2><p>首先把玩一下，发现有个 alarm 事件令程序在一分钟后退出，这里在二进制修改一下时间值去掉这个小玩意，并不会影响后续堆溢出的分析。</p>
+<p>时间值在 main 函数上作为立即数传给 alarm，用 IDA 或别的反汇编工具可以看到<br>一时间没有好用的二进制编辑，发现用 vi 也非常方便<br><a href="https://www.zhihu.com/question/22281280/answer/34778466">https://www.zhihu.com/question/22281280/answer/34778466</a></p>
+<p><img src="/img/shellman_分析/alarm.png" alt="ALARM signal 时长"></p>
+<p>之后的动态分析会用这个修改过的 shellman_noalarm 就不会一分钟后退出，看了网上一些介绍 gdb 可以屏蔽 ALARM signal， 也是可行方法吧。</p>
+        
+          <p class="article-more-link">
+            <a href="/2016/07/21/shellman-一个-Linux-堆溢出利用例题的分析/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://dd3.org/2016/07/21/shellman-一个-Linux-堆溢出利用例题的分析/" data-id="cizvbue030004bwml246tvgge" class="article-share-link">Share</a>
+      
+        <a href="http://dd3.org/2016/07/21/shellman-一个-Linux-堆溢出利用例题的分析/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+    
       <article id="post-理解-TCP-的三次握手、四次挥手" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -181,7 +240,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dd3.org/2016/06/27/理解-TCP-的三次握手、四次挥手/" data-id="cizprxh0d0016pzmlddtan7ls" class="article-share-link">Share</a>
+      <a data-url="http://dd3.org/2016/06/27/理解-TCP-的三次握手、四次挥手/" data-id="cizvbue12000zbwmlkkxkkyp6" class="article-share-link">Share</a>
       
         <a href="http://dd3.org/2016/06/27/理解-TCP-的三次握手、四次挥手/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -237,7 +296,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dd3.org/2016/06/22/山寨了个贪吃蛇/" data-id="cizprxgzv000fpzml4v8eef8m" class="article-share-link">Share</a>
+      <a data-url="http://dd3.org/2016/06/22/山寨了个贪吃蛇/" data-id="cizvbue0p000dbwmlpe0oygfc" class="article-share-link">Share</a>
       
         <a href="http://dd3.org/2016/06/22/山寨了个贪吃蛇/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -291,7 +350,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dd3.org/2016/04/24/Ubuntu-对-Retina-Display-的支持/" data-id="cizprxgzj0007pzmltpdn3s17" class="article-share-link">Share</a>
+      <a data-url="http://dd3.org/2016/04/24/Ubuntu-对-Retina-Display-的支持/" data-id="cizvbue080006bwmlrltunhke" class="article-share-link">Share</a>
       
         <a href="http://dd3.org/2016/04/24/Ubuntu-对-Retina-Display-的支持/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -363,7 +422,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dd3.org/2016/04/07/Leetcode-Median-of-Two-Sorted-Arrays/" data-id="cizprxgyw0002pzml6i82v2a7" class="article-share-link">Share</a>
+      <a data-url="http://dd3.org/2016/04/07/Leetcode-Median-of-Two-Sorted-Arrays/" data-id="cizvbue000003bwmlnejlagi1" class="article-share-link">Share</a>
       
         <a href="http://dd3.org/2016/04/07/Leetcode-Median-of-Two-Sorted-Arrays/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -426,66 +485,11 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dd3.org/2016/04/05/打印蛇形数组/" data-id="cizprxh01000lpzml2fb8b7b4" class="article-share-link">Share</a>
+      <a data-url="http://dd3.org/2016/04/05/打印蛇形数组/" data-id="cizvbue0y000rbwmls2yknm9k" class="article-share-link">Share</a>
       
         <a href="http://dd3.org/2016/04/05/打印蛇形数组/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-    </footer>
-  </div>
-  
-</article>
-
-
-
-    
-      <article id="post-日剧《我与明星的99日》" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/29/日剧《我与明星的99日》/">日剧《我与明星的99日》</a>
-    </h1>
-  
-
-        <div class="article-meta">
-          
-  <div class="article-date">
-    <i class="fa fa-calendar"></i>
-    <a href="/2016/03/29/日剧《我与明星的99日》/">
-      <time datetime="2016-03-29T11:19:49.000Z" itemprop="datePublished">2016-03-29</time>
-    </a>
-  </div>
-
-
-          
-  <div class="article-category">
-  	<i class="fa fa-folder"></i>
-    <a class="article-category-link" href="/categories/Drama/">Drama</a>
-  </div>
-
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-                
-        <p>剧情没什么营养, 诡异的日韩混血剧, 不过金泰熙好漂亮。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://dd3.org/2016/03/29/日剧《我与明星的99日》/" data-id="cizprxh03000opzmlvb4zcvvr" class="article-share-link">Share</a>
-      
-        <a href="http://dd3.org/2016/03/29/日剧《我与明星的99日》/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日剧/">日剧</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/金泰熙/">金泰熙</a></li></ul>
-
     </footer>
   </div>
   
@@ -506,6 +510,24 @@ ga('send', 'pageview');
     <h3 class="widget-title">recents</h3>
     <div class="widget">
       <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2017/03/04/刚刚看了《海边的曼切斯特》/" class="thumbnail">
+  
+    <span style="background-image:url(/img/Manchester_By_The_Sea/theboat.png
+)" alt="刚刚看了《海边的曼切斯特》" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/Drama/">Drama</a></p>
+              <p class="item-title"><a href="/2017/03/04/刚刚看了《海边的曼切斯特》/" class="title">刚刚看了《海边的曼切斯特》</a></p>
+              <p class="item-date"><time datetime="2017-03-04T13:00:45.000Z" itemprop="datePublished">2017-03-04</time></p>
+            </div>
+          </li>
         
           <li>
             
@@ -575,23 +597,6 @@ ga('send', 'pageview');
             </div>
           </li>
         
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2016/08/23/这样理解-Python-闭包/" class="thumbnail">
-  
-    <span class="thumbnail-image thumbnail-none"></span>
-  
-</a>
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category"><a class="article-category-link" href="/categories/Tech-Notes/">Tech Notes</a></p>
-              <p class="item-title"><a href="/2016/08/23/这样理解-Python-闭包/" class="title">这样理解 Python 闭包</a></p>
-              <p class="item-date"><time datetime="2016-08-23T13:02:36.000Z" itemprop="datePublished">2016-08-23</time></p>
-            </div>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -601,7 +606,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
