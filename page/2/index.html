@@ -108,7 +108,7 @@ ga('send', 'pageview');
     </div>
     <div class="article-info profile-block">
       <div class="article-info-block">
-        18
+        19
         <span>posts</span>
       </div>
       <div class="article-info-block">
@@ -135,6 +135,62 @@ ga('send', 'pageview');
 
       
       <section id="main">
+      <article id="post-这样理解-Python-闭包" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/23/这样理解-Python-闭包/">这样理解 Python 闭包</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2016/08/23/这样理解-Python-闭包/">
+      <time datetime="2016-08-23T13:02:36.000Z" itemprop="datePublished">2016-08-23</time>
+    </a>
+  </div>
+
+
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Tech-Notes/">Tech Notes</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <p>看了 <a href="http://python.jobbole.com/81683/" target="_blank" rel="external">12 步轻松搞定 python 装饰器</a> 里的描述后，对『closure 是上下文』有了些形象的理解，一些应用了 closure 的实践可以参考文章里的一些例子，例如函数参数定制生成，装饰器功能等</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><div class="line"></div><div class="line">g_var = <span class="number">20</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">outer</span><span class="params">()</span>:</span></div><div class="line">    loc_var = <span class="number">30</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inner</span><span class="params">()</span>:</span></div><div class="line">        print(<span class="string">'I can access g_var: %s, loc_var: %s'</span> % (g_var, loc_var))</div><div class="line">    <span class="keyword">return</span> inner</div><div class="line"></div><div class="line">in_fun = outer()</div><div class="line"></div><div class="line"><span class="comment"># 内层使用到的[外层函数的本地变量]会加入到 func 对象的 __closure__ tuple 里面</span></div><div class="line">print(in_fun.__closure__)</div><div class="line"></div><div class="line"><span class="comment"># 全局变量不包含在 closure tuple，并不是副本</span></div><div class="line">g_var = <span class="number">5000</span></div><div class="line"></div><div class="line"><span class="comment"># 效果就是 in_fun 本身函数内的代码，加上 __closure__ 里的上下文副本实现了 closure 功能</span></div><div class="line">in_fun()</div><div class="line"></div><div class="line"><span class="comment"># 也就是说 __closure__ tuple 包含一个 cell 元素，cell 装有外层的 loc_var，值是 30</span></div><div class="line">print(<span class="string">'There is %d cell inside'</span> % len(in_fun.__closure__))</div><div class="line">print(<span class="string">'This cell contain %d'</span> % in_fun.__closure__[<span class="number">0</span>].cell_contents)</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://dd3.org/2016/08/23/这样理解-Python-闭包/" data-id="cj5pgfs050010v9mlp3yyn1vv" class="article-share-link">Share</a>
+      
+        <a href="http://dd3.org/2016/08/23/这样理解-Python-闭包/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/closure/">closure</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+    
       <article id="post-shellman-一个-Linux-堆溢出利用例题的分析" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -181,7 +237,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dd3.org/2016/07/21/shellman-一个-Linux-堆溢出利用例题的分析/" data-id="cizvbue030004bwml246tvgge" class="article-share-link">Share</a>
+      <a data-url="http://dd3.org/2016/07/21/shellman-一个-Linux-堆溢出利用例题的分析/" data-id="cj5pgfrzm000cv9ml9hci1dbc" class="article-share-link">Share</a>
       
         <a href="http://dd3.org/2016/07/21/shellman-一个-Linux-堆溢出利用例题的分析/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -240,7 +296,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dd3.org/2016/06/27/理解-TCP-的三次握手、四次挥手/" data-id="cizvbue12000zbwmlkkxkkyp6" class="article-share-link">Share</a>
+      <a data-url="http://dd3.org/2016/06/27/理解-TCP-的三次握手、四次挥手/" data-id="cj5pgfrzz000rv9mla7k6rwen" class="article-share-link">Share</a>
       
         <a href="http://dd3.org/2016/06/27/理解-TCP-的三次握手、四次挥手/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -296,7 +352,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dd3.org/2016/06/22/山寨了个贪吃蛇/" data-id="cizvbue0p000dbwmlpe0oygfc" class="article-share-link">Share</a>
+      <a data-url="http://dd3.org/2016/06/22/山寨了个贪吃蛇/" data-id="cj5pgfs01000vv9mll245cqbe" class="article-share-link">Share</a>
       
         <a href="http://dd3.org/2016/06/22/山寨了个贪吃蛇/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -350,7 +406,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dd3.org/2016/04/24/Ubuntu-对-Retina-Display-的支持/" data-id="cizvbue080006bwmlrltunhke" class="article-share-link">Share</a>
+      <a data-url="http://dd3.org/2016/04/24/Ubuntu-对-Retina-Display-的支持/" data-id="cj5pgfrzl000av9mlcl3jjwlu" class="article-share-link">Share</a>
       
         <a href="http://dd3.org/2016/04/24/Ubuntu-对-Retina-Display-的支持/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -422,7 +478,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dd3.org/2016/04/07/Leetcode-Median-of-Two-Sorted-Arrays/" data-id="cizvbue000003bwmlnejlagi1" class="article-share-link">Share</a>
+      <a data-url="http://dd3.org/2016/04/07/Leetcode-Median-of-Two-Sorted-Arrays/" data-id="cj5pgfrzg0007v9mlg8prf67x" class="article-share-link">Share</a>
       
         <a href="http://dd3.org/2016/04/07/Leetcode-Median-of-Two-Sorted-Arrays/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -437,69 +493,8 @@ ga('send', 'pageview');
 
 
     
-      <article id="post-打印蛇形数组" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/05/打印蛇形数组/">打印蛇形数组</a>
-    </h1>
-  
-
-        <div class="article-meta">
-          
-  <div class="article-date">
-    <i class="fa fa-calendar"></i>
-    <a href="/2016/04/05/打印蛇形数组/">
-      <time datetime="2016-04-04T16:34:47.000Z" itemprop="datePublished">2016-04-05</time>
-    </a>
-  </div>
-
-
-          
-  <div class="article-category">
-  	<i class="fa fa-folder"></i>
-    <a class="article-category-link" href="/categories/Tech-Notes/">Tech Notes</a>
-  </div>
-
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>唉, 不熟练连这样的题都不会入手。。</p>
-<p>题目大概是这样 <a href="http://icpc.ahu.edu.cn/OJ/ContestProblem.aspx?cid=16&amp;id=410">http://icpc.ahu.edu.cn/OJ/ContestProblem.aspx?cid=16&amp;id=410</a><br>参考了 <a href="http://www.cnblogs.com/kaima/p/4773908.html">http://www.cnblogs.com/kaima/p/4773908.html</a></p>
-<p>外部的 while 循环检查 number 是否到 N * N, 如果 N 为偶数则可以在这里停下, (最后四个位置刚好填完)<br>里面第一个 if 检查奇数 N 的情况(会填充剩下一个位置)</p>
-<p>然后开始填充数组, 调节 x y 的坐标值填充一圈蛇形, 一圈后 x y 回归原点<br>缩小 size 变量<br>x+1, y+1 跳入内圈重复以上步骤又填充一圈, 直至跳出 while 循环</p>
-<p><img src="/img/打印蛇形数组/snake.jpg" alt="x y 走向"></p>
-<p>代码如下<br>
-        
-          <p class="article-more-link">
-            <a href="/2016/04/05/打印蛇形数组/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://dd3.org/2016/04/05/打印蛇形数组/" data-id="cizvbue0y000rbwmls2yknm9k" class="article-share-link">Share</a>
-      
-        <a href="http://dd3.org/2016/04/05/打印蛇形数组/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-    
       <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+        <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
       </nav>
     </section>
       
@@ -510,6 +505,24 @@ ga('send', 'pageview');
     <h3 class="widget-title">recents</h3>
     <div class="widget">
       <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2017/07/29/韩剧《记忆》/" class="thumbnail">
+  
+    <span style="background-image:url(/img/韩剧《记忆》/memory.jpg
+)" alt="韩剧《记忆》" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/Drama/">Drama</a></p>
+              <p class="item-title"><a href="/2017/07/29/韩剧《记忆》/" class="title">韩剧《记忆》</a></p>
+              <p class="item-date"><time datetime="2017-07-29T14:42:00.000Z" itemprop="datePublished">2017-07-29</time></p>
+            </div>
+          </li>
         
           <li>
             
@@ -580,23 +593,6 @@ ga('send', 'pageview');
             </div>
           </li>
         
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2016/11/19/Visual-Studio-Code-挺好用的/" class="thumbnail">
-  
-    <span class="thumbnail-image thumbnail-none"></span>
-  
-</a>
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category"><a class="article-category-link" href="/categories/Tech-Notes/">Tech Notes</a></p>
-              <p class="item-title"><a href="/2016/11/19/Visual-Studio-Code-挺好用的/" class="title">Visual Studio Code 挺好用的</a></p>
-              <p class="item-date"><time datetime="2016-11-19T06:15:30.000Z" itemprop="datePublished">2016-11-19</time></p>
-            </div>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -606,7 +602,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
