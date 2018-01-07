@@ -218,7 +218,7 @@ ga('send', 'pageview');
 <p>至此我们可以控制关键的全局数组的内容，达至任意地址读写。</p>
 <h4 id="替换_free_的地址变成_system">替换 free 的地址变成 system</h4><p>从 IDA 或别的工具可得 free 的 GOT 地址在 0x601600, 程序跑起来后实际 free 函数地址会填充进来</p>
 <p><img src="/img/shellman_分析/free_GOT.png" alt="free 在 GOT 上的地址"></p>
-<p>用 gdb 把程序跑起来后，用断点获取 system 地址<br>gdb-peda$ x 0x601600<br>0x601600 <a href="&#109;&#97;&#x69;&#108;&#116;&#x6f;&#58;&#x66;&#x72;&#x65;&#x65;&#64;&#103;&#111;&#116;&#x2e;&#112;&#x6c;&#116;">&#x66;&#x72;&#x65;&#x65;&#64;&#103;&#111;&#116;&#x2e;&#112;&#x6c;&#116;</a>:    0x00007ffff7a91a70<br>gdb-peda$ b system<br>Breakpoint 3 at 0x7ffff7a53380</p>
+<p>用 gdb 把程序跑起来后，用断点获取 system 地址<br>gdb-peda$ x 0x601600<br>0x601600 <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#x6f;&#x3a;&#x66;&#x72;&#x65;&#101;&#64;&#103;&#111;&#116;&#x2e;&#x70;&#108;&#116;">&#x66;&#x72;&#x65;&#101;&#64;&#103;&#111;&#116;&#x2e;&#x70;&#108;&#116;</a>:    0x00007ffff7a91a70<br>gdb-peda$ b system<br>Breakpoint 3 at 0x7ffff7a53380</p>
 <p>同一个libc 两个函数的差值是一样的</p>
 <p>>&gt;&gt; hex(0x00007ffff7a91a70 - 0x7ffff7a53380)<br>‘0x3e6f0’</p>
 <p>利用任意地址读写（更改数组项目的 ptr 指向，再 list 出内容或编辑回去 ），可以读出 free@GOT 的地址值，然后利用和 system 的差值固定这一特性计算 system 地址，再写回去覆盖 free 的函数地址值，至此完成函数地址替换。</p>
@@ -236,7 +236,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://dd3.org/2016/07/21/shellman-一个-Linux-堆溢出利用例题的分析/" data-id="cjc4kyspw0009ulml4nig1jp5" class="article-share-link">Share</a>
+      <a data-url="http://dd3.org/2016/07/21/shellman-一个-Linux-堆溢出利用例题的分析/" data-id="cjc4l00fn000cv5mlxmul1zuj" class="article-share-link">Share</a>
       
         <a href="http://dd3.org/2016/07/21/shellman-一个-Linux-堆溢出利用例题的分析/#disqus_thread" class="article-comment-link">Comments</a>
       
